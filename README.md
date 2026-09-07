@@ -38,3 +38,22 @@ Then point `spontaneouscafe.com` at Vercel from GoDaddy DNS (A record to Vercel,
 ## Contact form
 
 The form posts to Formspree (form `maeypdpl`) by AJAX with a plain POST as the no-JS fallback. Submissions arrive by email.
+
+## Hero video loops
+
+The five loops are AI-generated from the placeholder photos with fal.ai (MiniMax Hailuo 02, image-to-video, 768p, 6 s, about $0.27 a clip). Ambience only: motion added to an existing photo, never a dish invented. When Matt's own photos land, regenerate from those.
+
+```bash
+set -a; . ./.env; set +a; python3 tools/gen-video.py        # all five, or name shots
+./tools/place-video.sh                                       # ping-pong loop, 1280 wide, posters cut from frame 0
+```
+
+Keys live in `.env` (gitignored): `FAL_KEY`, `MINIMAX_API_KEY`, `VERCEL_TOKEN`.
+
+## Deploy
+
+```bash
+set -a; . ./.env; set +a; npx vercel deploy --prod --yes --token "$VERCEL_TOKEN"
+```
+
+Production: https://spontaneous-cafe.vercel.app (project `spontaneous-cafe`, team `mohsprojects`).

@@ -40,4 +40,5 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 - Eight pages built and reviewed at desktop and 375px: home, foraging, private-chef, catering, cooking-classes, about, contact, privacy. `python3 build.py` writes dist/, preview with `python3 -m http.server 8787 -d dist`.
 - Placeholder media in place: 14 photos (Unsplash) and 5 loops (Mixkit), all trimmed to 8 s. Manifest in src/assets/MANIFEST.md. Swap plan in docs/SWAP-LIST.md.
 - 34 `<!-- CONFIRM -->` tags in src/pages mark assumptions for Matt. Two prices carry a visible "confirm with Matt" chip.
-- Not done, by decision: AI video loops (after design approval), Formspree id, Vercel deploy and DNS switch (need Mohammed's go and his `vercel login`), git commit (Mohammed has not asked for one).
+- 2026-09-07 later: Mohammed approved. Committed. Deployed to https://spontaneous-cafe.vercel.app (Vercel project spontaneous-cafe, team mohsprojects). Formspree form maeypdpl wired with AJAX submit and plain-POST fallback. AI loops generated on fal.ai Hailuo 02 from the placeholder photos (see README). Prose anti-slop pass run over every page.
+- Still open: DNS switch of spontaneouscafe.com to Vercel (needs Matt), Matt's own photos and the 34 CONFIRM answers, privacy effective date.
