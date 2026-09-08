@@ -33,6 +33,21 @@ TIERS = [
 ]
 
 CONFIRM_RE = re.compile(r'<!--\s*CONFIRM\b.*?-->', re.S)
+TAG_CONFIRM_RE = re.compile(r'<span class="tag-confirm">.*?</span>', re.S)
+CLASS_ATTR_RE = re.compile(r'class="([^"]*)"')
+
+
+def strip_review_markup(html_src):
+    """Production builds (no REVIEW=1) never ship internal review markup:
+    the "confirm with Matt" chips, and the "ph" class that marks placeholder
+    images/photos so visitors never see either."""
+    html_src = TAG_CONFIRM_RE.sub('', html_src)
+
+    def strip_ph(m):
+        classes = [c for c in m.group(1).split() if c != 'ph']
+        return f'class="{" ".join(classes)}"' if classes else ''
+
+    return CLASS_ATTR_RE.sub(strip_ph, html_src)
 
 
 def read(p):
@@ -109,9 +124,14 @@ def responsive_images(body):
         attrs = re.sub(r'\sdata-sizes="[^"]+"', '', attrs)
         full_w = 1600
         wm = re.search(r'\swidth="(\d+)"', attrs)
+        # The img keeps its class; the wrapping <picture> gets the same class so
+        # rules like .ph and .span-2 still target it (picture is display:contents
+        # by default, so it otherwise takes no part in layout).
+        cm = re.search(r'\sclass="([^"]*)"', attrs)
+        picture_class = f' class="{cm.group(1)}"' if cm else ''
         jpg = ', '.join([f'/assets/img/{name}-{w}.jpg {w}w' for w in widths] + [f'/assets/img/{name}.jpg {full_w}w'])
         webp = ', '.join([f'/assets/img/{name}-{w}.webp {w}w' for w in widths] + [f'/assets/img/{name}.webp {full_w}w'])
-        return (f'<picture><source type="image/webp" srcset="{webp}" sizes="{sizes}">'
+        return (f'<picture{picture_class}><source type="image/webp" srcset="{webp}" sizes="{sizes}">'
                 f'<img{attrs} src="/assets/img/{name}.jpg" srcset="{jpg}" sizes="{sizes}"></picture>')
     return IMG_RE.sub(repl, body)
 
@@ -197,6 +217,8 @@ def hash_assets():
 
 
 def build():
+    review = os.environ.get('REVIEW') == '1'
+    print(f'mode: {"review (chips and .ph kept)" if review else "production (chips and .ph stripped)"}')
     if os.path.isdir(DIST):
         shutil.rmtree(DIST)
     os.makedirs(DIST)
@@ -237,6 +259,8 @@ def build():
         if meta.get('noindex'):
             html = re.sub(r'\n<link rel="canonical"[^>]*>', '', html, count=1)
         html = CONFIRM_RE.sub('', html)
+        if not review:
+            html = strip_review_markup(html)
 
         if slug == '404':
             out_path = os.path.join(DIST, '404.html')

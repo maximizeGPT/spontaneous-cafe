@@ -53,3 +53,13 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 ## Audit (2026-09-07 to 08)
 - Technical audit workflow: 7 dimensions, 75 agents, 68 confirmed findings (2 blockers, 21 major, 45 minor). Fixes landed: self-hosted fonts, hashed assets, security headers and CSP, 404, responsive images via build.py, contrast and focus fixes, mobile overflow, inert nav drawer, hero pause control, video preload=none with 720 variants, notify function hardening. Page-level fixes ride with the rewrite. Round two (design, copy, IA, conversion) runs after the rewrite.
 - Real photo of Matt received 2026-09-07 (Drive, "Matt Cooking.png"): src/assets/img/matt.jpg (portrait), matt-kitchen.jpg, matt-square.jpg.
+
+## Round 3 facts and rules (Mohammed, 2026-09-08). These are corrections; earlier lines that conflict are wrong.
+- Matt forages mushrooms, berries, greens and salt. He does not hunt, fish or butcher. Meat and fish are bought. No whole-animal, nose-to-tail, "line-caught" or hunting lines anywhere.
+- The menu is agreed with the guest in advance from what the farms, the market and the forest have that week. "Written the night before, sometimes the morning of" was invented and is not accurate.
+- No Caveat accent word in headings. Caveat removed from the site.
+- Tagline is "Local · Organic · Wild". Seasonal is not something to flaunt.
+- Phone and email appear in the footer and on the Contact page only. CTA bands carry the button alone.
+- No figure captions describing images.
+- Tone: plainer. No count-plus-twist headings ("Four things, and none of them is a recipe"). Private chef page is prose, not a step list.
+- Review markup (confirm chips, placeholder badges) is stripped from production builds; `REVIEW=1 python3 build.py` keeps it.

@@ -5,7 +5,7 @@
   <div class="wrap">
     <div class="hero__inner">
       <p class="eyebrow">Contact</p>
-      <h1>Tell Matt the date and who's <span class="hand">coming.</span></h1>
+      <h1>Send Matt the details.</h1>
       <p class="lede">A plan for the day and a price come back from Matt, usually within a day or two.</p>
     </div>
   </div>
@@ -15,7 +15,6 @@
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">Inquiries</p>
-      <h2>Send Matt the details.</h2>
     </div>
     <div class="split">
       <div class="contact-aside reveal">
@@ -30,6 +29,10 @@
         <div>
           <p class="eyebrow">Where</p>
           <p>Mendocino, California. Matt cooks anywhere in the greater Mendocino area.</p>
+        </div>
+        <div class="rates">
+          <p class="eyebrow">Rates</p>
+          <p>3 hours $300 &middot; 6 hours $500 &middot; 12 hours $1,000, any service. Ingredients at cost. Weddings and larger events are quoted.</p>
         </div>
         <p class="small">Matt replies within a day or two, faster in season.</p>
       </div>
@@ -65,8 +68,18 @@
           </select>
         </div>
         <div class="field">
-          <label for="date">Date</label>
-          <input type="text" id="date" name="date" autocomplete="off" placeholder="e.g. mid-October, or a weekend in May" aria-describedby="date-help">
+          <label for="tier">How long</label>
+          <select id="tier" name="tier">
+            <option value="">Not sure yet</option>
+            <option value="3 hours">3 hours, $300</option>
+            <option value="6 hours">6 hours, $500</option>
+            <option value="12 hours">12 hours, $1,000</option>
+            <option value="Larger event">Larger event, quoted</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Date <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="date" name="date" autocomplete="off" placeholder="e.g. mid-October, or a weekend in May" aria-describedby="date-help" required>
           <span class="help" id="date-help">Rough is fine</span>
         </div>
         <div class="field">
@@ -75,9 +88,9 @@
           <span class="help" id="guests-help">A best guess is fine</span>
         </div>
         <div class="field field--full">
-          <label for="message">Anything Matt should know <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="message" name="message" required aria-describedby="message-help"></textarea>
-          <span class="help" id="message-help">Where you're staying, dietary needs, anything else</span>
+          <label for="message">Where you're staying, or the venue, and anything else</label>
+          <textarea id="message" name="message" aria-describedby="message-help"></textarea>
+          <span class="help" id="message-help">Dietary needs, anything else</span>
         </div>
         <div class="form__actions">
           <button class="btn" type="submit">Send inquiry</button>
@@ -97,15 +110,15 @@
     <div class="faq reveal">
       <details>
         <summary>How far ahead should I book?</summary>
-        <p>A few weeks is comfortable. Summer weekends and the holidays go earliest, and mushroom season fills up once the rain starts. If your dates are close, ask anyway. Matt has taken bookings the same week and cooked dinner the next night.</p>
+        <p>A few weeks is comfortable. Summer weekends and the holidays go earliest, and mushroom season fills up once the rain starts. Weddings and retreats book months to a year out; the catering page has the detail. If your dates are close, ask anyway. I have taken bookings the same week and cooked dinner the next night.</p>
       </details>
       <details>
         <summary>What happens after I send this?</summary>
-        <p>Matt reads it and writes back, usually within a day or two. He asks what you cannot eat and where you're staying. Then he sends a plan for the day or the meal with a price on it. Nothing is booked until you say yes to that.</p>
+        <p>I read it and write back, usually within a day or two. I will ask what you cannot eat and where you are staying. Then you get a plan for the day or the meal with a price on it. Nothing is booked until you say yes to that.</p>
       </details>
       <details>
         <summary>Is there a deposit?</summary>
-        <p>For a dated booking, yes. The amount depends on the size of the job, and Matt puts it in writing before you pay anything. <!-- CONFIRM: deposit amount, payment method and cancellation window with Matt. --></p>
+        <p>For a dated booking, yes. The amount depends on the size of the job, and I put it in writing before you pay anything. <!-- CONFIRM: deposit amount, payment method and cancellation window with Matt. --></p>
       </details>
     </div>
   </div>

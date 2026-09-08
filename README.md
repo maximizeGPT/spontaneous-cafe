@@ -14,12 +14,25 @@ Writes `dist/`. Preview locally:
 python3 -m http.server 8787 -d dist
 ```
 
+### Review markup and `REVIEW=1`
+
+Pages can carry two kinds of internal, not-for-visitors markup: a `<span class="tag-confirm">confirm with Matt</span>`
+chip flagging a fact that needs sign-off, and a `ph` class on any placeholder image or figure. A plain `python3 build.py`
+(what Vercel runs in production) strips both from every page, so visitors never see a chip or a "placeholder" badge.
+To keep them for an internal review pass, set `REVIEW=1`:
+
+```bash
+REVIEW=1 python3 build.py
+```
+
+The build prints which mode it ran in (`review` or `production`).
+
 ## Layout
 
 - `src/layout.html`: the shell (head, header, nav, footer). Every page is poured into it.
 - `src/pages/*.html`: one file per page. A JSON meta block in an HTML comment at the top, then the page body.
 - `src/assets/css/fonts.css`: `@font-face` rules for the self-hosted latin subsets in `src/assets/fonts/`
-  (Lora upright and italic, Caveat, Source Sans 3 upright and italic, all variable woff2 pulled from the
+  (Lora upright and italic, Source Sans 3 upright and italic, all variable woff2 pulled from the
   Google Fonts API). The site makes no request to fonts.googleapis.com or fonts.gstatic.com.
 - `src/assets/css/site.css`: design tokens and every component.
 - `src/assets/js/site.js`: mobile nav, hero video (pauses off screen, off under reduced motion), reveal on scroll, seasonal menu tabs, contact form fallback.

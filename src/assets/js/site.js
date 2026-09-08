@@ -22,6 +22,24 @@
     window.addEventListener('load', function () { if (done) return; done = true; fn(); });
   }
 
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  function svgEl(tag, attrs) {
+    var el = doc.createElementNS(SVG_NS, tag);
+    for (var k in attrs) { if (attrs.hasOwnProperty(k)) el.setAttribute(k, attrs[k]); }
+    return el;
+  }
+  // Pause = two bars, play = a triangle. currentColor so it follows the button's text color.
+  function heroToggleIcon(kind) {
+    var svg = svgEl('svg', { viewBox: '0 0 24 24', width: '18', height: '18', 'aria-hidden': 'true', focusable: 'false' });
+    if (kind === 'play') {
+      svg.appendChild(svgEl('polygon', { points: '7,4 20,12 7,20', fill: 'currentColor' }));
+    } else {
+      svg.appendChild(svgEl('rect', { x: '6', y: '5', width: '4', height: '14', fill: 'currentColor' }));
+      svg.appendChild(svgEl('rect', { x: '14', y: '5', width: '4', height: '14', fill: 'currentColor' }));
+    }
+    return svg;
+  }
+
   /* ---------------------------------------------------------------- nav */
   block(function () {
     var toggle = doc.querySelector('.nav-toggle');
@@ -106,6 +124,9 @@
       var visible = false;
       var armed = false;
       var btn = null;
+      var iconEl = null;
+      var hiddenLabel = null;
+      var visibleLabel = null;
 
       function start() {
         if (userPaused) return;
@@ -119,8 +140,13 @@
 
       function syncButton() {
         if (!btn) return;
+        var text = userPaused ? 'Play video' : 'Pause video';
         btn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
-        btn.textContent = userPaused ? 'Play video' : 'Pause video';
+        if (hiddenLabel) hiddenLabel.textContent = text;
+        if (visibleLabel) visibleLabel.textContent = text;
+        var nextIcon = heroToggleIcon(userPaused ? 'play' : 'pause');
+        if (iconEl) btn.replaceChild(nextIcon, iconEl);
+        iconEl = nextIcon;
       }
 
       if (hero) {
@@ -128,7 +154,23 @@
         btn.className = 'hero__toggle';
         btn.type = 'button';
         btn.setAttribute('aria-pressed', 'false');
-        btn.textContent = 'Pause video';
+
+        iconEl = heroToggleIcon('pause');
+        // A visible label can stay on wide screens where the chip has room;
+        // the CSS hides it once .hero__toggle becomes a 44px icon-only circle.
+        visibleLabel = doc.createElement('span');
+        visibleLabel.className = 'hero__toggle-label';
+        visibleLabel.setAttribute('aria-hidden', 'true');
+        visibleLabel.textContent = 'Pause video';
+        // The accessible name: always present for assistive tech, never shown visually.
+        hiddenLabel = doc.createElement('span');
+        hiddenLabel.className = 'visually-hidden';
+        hiddenLabel.textContent = 'Pause video';
+
+        btn.appendChild(iconEl);
+        btn.appendChild(visibleLabel);
+        btn.appendChild(hiddenLabel);
+
         btn.addEventListener('click', function () {
           if (userPaused) {
             userPaused = false;
@@ -221,22 +263,30 @@
     var status = form.querySelector('.form__status');
     var button = form.querySelector('button[type="submit"]');
     var sel = form.querySelector('select[name="service"]');
+    var tierSel = form.querySelector('select[name="tier"]');
     var subject = form.querySelector('input[name="_subject"]');
 
-    // ?service= only wins if the select actually offers that option.
+    // ?service= and ?tier= only win if the select actually offers that option.
     var svc = new URLSearchParams(location.search).get('service');
     if (svc && sel) {
       var match = false;
       Array.prototype.forEach.call(sel.options, function (o) { if (o.value === svc) match = true; });
       if (match) sel.value = svc;
     }
+    var tierParam = new URLSearchParams(location.search).get('tier');
+    if (tierParam && tierSel) {
+      var tierMatch = false;
+      Array.prototype.forEach.call(tierSel.options, function (o) { if (o.value === tierParam) tierMatch = true; });
+      if (tierMatch) tierSel.value = tierParam;
+    }
 
-    function setStatus(text, isError) {
+    function setStatus(text, isError, isHTML) {
       if (!status) return;
       if (isError) status.setAttribute('role', 'alert');
       else status.removeAttribute('role');
       status.classList.toggle('is-error', !!isError);
-      status.textContent = text;
+      if (isHTML) status.innerHTML = text;
+      else status.textContent = text;
     }
 
     form.addEventListener('submit', function (e) {
@@ -244,7 +294,10 @@
         var nameEl = form.querySelector('[name="name"]');
         var who = (nameEl && nameEl.value && nameEl.value.trim()) || 'a website visitor';
         var what = (sel && sel.value) || 'General';
-        subject.value = 'Inquiry: ' + what + ' from ' + who;
+        var tierVal = (tierSel && tierSel.value) || '';
+        subject.value = tierVal
+          ? 'Inquiry: ' + what + ', ' + tierVal + ' from ' + who
+          : 'Inquiry: ' + what + ' from ' + who;
       }
 
       if (!window.fetch || !form.action) return;
@@ -271,9 +324,12 @@
           form.reset();
           setStatus('Sent. Matt will get back to you within a day or two.', false);
         })
-        .catch(function (err) {
-          var msg = (err && err.errors && err.errors.map(function (x) { return x.message; }).join(', ')) || '';
-          setStatus('That did not send. ' + (msg || 'Email me directly at chefmattsamuelson@gmail.com.'), true);
+        .catch(function () {
+          setStatus(
+            'That did not send. Email chefmattsamuelson@gmail.com or call <a href="tel:+17079726647">(707) 972-6647</a>.',
+            true,
+            true
+          );
         })
         .then(function () { if (button) button.disabled = false; });
     });
