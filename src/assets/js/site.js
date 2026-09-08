@@ -269,7 +269,7 @@
             keepalive: true
           }).catch(noop);
           form.reset();
-          setStatus('Sent. I will get back to you within a day or two.', false);
+          setStatus('Sent. Matt will get back to you within a day or two.', false);
         })
         .catch(function (err) {
           var msg = (err && err.errors && err.errors.map(function (x) { return x.message; }).join(', ')) || '';

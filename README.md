@@ -94,3 +94,7 @@ Production: https://spontaneous-cafe.vercel.app (project `spontaneous-cafe`, tea
 | `CONFIRM_INQUIRER=1` | Also text the inquirer a confirmation when they leave a phone number. |
 
 With no variables set the function returns "skipped" and the form still works through Formspree.
+
+## Responsive images
+
+`tools/images.py` writes 480, 800 and 1200 px JPEG and WebP variants next to every photo in `src/assets/img/`. The build wraps any `<img src="/assets/img/x.jpg">` that has variants in a `<picture>` with WebP and JPEG `srcset`. Add `data-sizes="..."` on an `<img>` to override the default `sizes`. Run the tool after adding photos.

@@ -386,7 +386,7 @@ button { font: inherit; }
 .site-footer .wrap { display: grid; grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .site-footer .brand svg, .site-footer .brand img { height: 60px; }
 .site-footer .tagline { font-family: var(--font-display); font-size: var(--text-sm); letter-spacing: 0.18em; text-transform: uppercase; color: var(--linen); margin-top: var(--space-3); }
-.site-footer h4 { color: var(--linen); font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: var(--space-3); }
+.site-footer .footer-h { color: var(--linen); font-family: var(--font-body); font-size: var(--text-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin-bottom: var(--space-3); }
 .site-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-1); font-size: var(--text-sm); }
 .site-footer .wrap > * { min-width: 0; }
 .site-footer a { color: var(--linen); text-decoration: none; overflow-wrap: anywhere; word-break: normal; }

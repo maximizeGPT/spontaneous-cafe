@@ -77,7 +77,7 @@ export default async function handler(req, res) {
   const owner = [`New inquiry: ${service}`, `${name} · ${email}${phone ? ' · ' + phone : ''}`, date ? `Date: ${date}` : '', guests ? `Guests: ${guests}` : '', message].filter(Boolean).join('\n');
   const results = { owner_sms: await twilio(e164(process.env.OWNER_PHONE), owner), telegram: await telegram(owner) };
   if (process.env.CONFIRM_INQUIRER === '1' && e164(phone)) {
-    results.inquirer_sms = await twilio(e164(phone), `Thanks ${name.split(' ')[0]}, got your ${service.toLowerCase()} inquiry. I will reply within a day or two. Matt, The Spontaneous Cafe (707) 972-6647`);
+    results.inquirer_sms = await twilio(e164(phone), `Thanks ${name.split(' ')[0]}, your ${service.toLowerCase()} inquiry reached Matt at The Spontaneous Cafe. He replies within a day or two. (707) 972-6647`);
   }
   return res.status(200).json({ ok: true, results });
 }

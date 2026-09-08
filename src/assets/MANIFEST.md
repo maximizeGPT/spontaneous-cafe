@@ -31,4 +31,4 @@ See MANIFEST-photos.md (written by the sourcing agent) for source URL, creator a
 | src-shore.jpg, salt.jpg | 11_tide_pools_sea_salt.jpg |
 | src-berries.jpg | 12_wild_berries_in_hand.jpg |
 | plate.jpg | 13_plated_seasonal_dish.jpg |
-| matt.jpg | 14_man_portrait_forest.jpg (stand-in, not Matt) |
+| matt.jpg, matt-kitchen.jpg, matt-square.jpg | Matt Cooking.png supplied by Mohammed 2026-09-07 (real, not a stand-in) |

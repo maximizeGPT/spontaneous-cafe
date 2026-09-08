@@ -47,4 +47,9 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 - Public Maps link: https://www.google.com/maps?cid=7343978535458024901 (name "Spontaneous Cafe"). Place ID not yet extracted; the review link comes from the GBP dashboard "Ask for reviews" once verified.
 
 ## Voice change (2026-09-07)
-- Mohammed: first person throughout is too much, and sections that echo the interview answers verbatim ("Six words I actually mean") read as forced. Rewrite pending research on register.
+- Mohammed: first person throughout is too much, and sections that echo the interview answers verbatim ("Six words I actually mean") read as forced.
+- Decision (docs/REWRITE-BRIEF.md): brand voice in third person on Home and service pages, Matt's first person only on About, in FAQ answers and in at most two short asides per page; CTAs address the reader. "Six words" section deleted. Register research was started but the rewrite went ahead on common sense, as Mohammed allowed.
+
+## Audit (2026-09-07 to 08)
+- Technical audit workflow: 7 dimensions, 75 agents, 68 confirmed findings (2 blockers, 21 major, 45 minor). Fixes landed: self-hosted fonts, hashed assets, security headers and CSP, 404, responsive images via build.py, contrast and focus fixes, mobile overflow, inert nav drawer, hero pause control, video preload=none with 720 variants, notify function hardening. Page-level fixes ride with the rewrite. Round two (design, copy, IA, conversion) runs after the rewrite.
+- Real photo of Matt received 2026-09-07 (Drive, "Matt Cooking.png"): src/assets/img/matt.jpg (portrait), matt-kitchen.jpg, matt-square.jpg.
