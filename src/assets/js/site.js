@@ -262,7 +262,7 @@
           // Instant notification to Matt, fire and forget. Formspree already has the record.
           var payload = {};
           new FormData(form).forEach(function (v, k) { payload[k] = v; });
-          fetch('/api/notify', {
+          fetch('/api/notify/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),

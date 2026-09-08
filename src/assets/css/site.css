@@ -70,6 +70,7 @@ body {
 }
 img, video, svg { max-width: 100%; display: block; }
 picture { display: contents; }
+picture > source { display: none; }
 img { height: auto; }
 a { color: var(--red); text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
 a:hover { color: var(--red-deep); }
