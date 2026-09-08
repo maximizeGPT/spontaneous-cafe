@@ -34,6 +34,12 @@ _On the page: ingredients billed at cost with the receipts, on top of the tier, 
 
 >
 
+### Catering: is "up to about twelve guests" the right line between the three tiers and a quoted event?
+
+_On the catering page each tier card says "up to about twelve guests", and anything above that, or any event with rentals, is quoted. Twelve is my number._
+
+>
+
 ### For a larger catering job, what goes into the quote?
 
 _On the page, five things move the number: guest count and how firm it is, the number of courses and the service style, cooks and service staff on the day, rentals (tables, linen, china, glass, field kitchen), travel and setup time to the venue. Tell me what is missing, what is wrong, and whether you want a starting figure on the card instead of "quoted per event"._
@@ -170,7 +176,7 @@ _On the page: salt off the rocks at low tide in the morning, mushrooms on the ri
 
 ### The sample menu on the home page. Which courses can stay?
 
-_I invented a late-summer six-course menu: beach salt with bread from a wood oven and cultured butter, heirloom tomatoes from a farm stand on Comptche Road with sea beans, grilled squash with chanterelle and nettle pesto, rockfish line-caught off Noyo Harbor, grass-fed lamb from an inland ranch, huckleberry galette with honey from a neighbour's hives. The wood oven, the rockfish, the honey and the lamb all need your yes or a swap. Tell me which farms, ranches or fishermen I can name._
+_I invented a late-summer six-course menu: beach salt with bread and cultured butter, heirloom tomatoes from a farm stand on Comptche Road with sea beans, grilled squash with chanterelle and nettle pesto, rockfish from the harbor, lamb from a ranch inland, huckleberry galette with honey from a neighbour's hives. The rockfish, the honey and the lamb all need your yes or a swap. Tell me which farms, ranches or fishermen I can name._
 
 >
 
