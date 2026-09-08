@@ -111,3 +111,7 @@ With no variables set the function returns "skipped" and the form still works th
 ## Responsive images
 
 `tools/images.py` writes 480, 800 and 1200 px JPEG and WebP variants next to every photo in `src/assets/img/`. The build wraps any `<img src="/assets/img/x.jpg">` that has variants in a `<picture>` with WebP and JPEG `srcset`. Add `data-sizes="..."` on an `<img>` to override the default `sizes`. Run the tool after adding photos.
+
+## Launch
+
+`docs/LAUNCH-CHECKLIST.md` is the DNS cutover, verification and rollback procedure. `docs/to-questionnaire-matt.md` is the list of client facts still to confirm.
