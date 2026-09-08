@@ -12,11 +12,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://spontaneouscafe.com/{{canonical}}">
 <meta property="og:image" content="https://spontaneouscafe.com/assets/img/{{og_image}}">
+{{head_meta}}
 <meta name="theme-color" content="#F1E9DA">
 <link rel="icon" href="/assets/logo/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lora-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/caveat-latin.woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/fonts.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script type="application/ld+json">{{jsonld}}</script>
 </head>
@@ -24,7 +25,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="The Spontaneous Cafe, home">{{wordmark}}</a>
+    <a class="brand" href="/" aria-label="The Spontaneous Cafe, home"><img src="/assets/logo/wordmark.svg" alt="The Spontaneous Cafe" width="2050" height="736"></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       <span class="label visually-hidden">Menu</span>
@@ -47,7 +48,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div>
-      <a class="brand" href="/" aria-label="The Spontaneous Cafe">{{wordmark_light}}</a>
+      <a class="brand" href="/" aria-label="The Spontaneous Cafe"><img src="/assets/logo/wordmark-light.svg" alt="The Spontaneous Cafe" width="2050" height="736"></a>
       <p class="tagline">Seasonal &middot; Local &middot; Organic &middot; Wild</p>
       <p class="small" style="color:inherit;margin-top:1rem;max-width:36ch">Cooking, foraging and teaching on the Mendocino coast since 2009.</p>
     </div>
@@ -69,6 +70,7 @@
         <li><a href="tel:+17079726647">(707) 972-6647</a></li>
         <li><a href="mailto:chefmattsamuelson@gmail.com">chefmattsamuelson@gmail.com</a></li>
         <li>Mendocino, California</li>
+        <li><a href="https://www.google.com/maps?cid=7343978535458024901" rel="noopener">Find us on Google Maps</a></li>
       </ul>
     </div>
     <div class="legal">

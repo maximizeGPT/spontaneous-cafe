@@ -39,7 +39,7 @@ Photos in /assets/img/: svc-foraging.jpg, svc-chef.jpg, svc-catering.jpg, svc-cl
 Always give width/height attributes (4:3 photos 800x600, 3:4 900x1200, square 600x600) and loading="lazy" below the hero. Alt text describes the picture, never says "image of".
 
 ## Facts you may use (nothing else; tag anything you must assume with <!-- CONFIRM --> in the HTML)
-See CONTEXT.md "Client facts". Prices: experiences $500 full day, $250 half day. Private chef from $500 a day plus ingredients at cost (confirm). Catering quoted per event (confirm). Greater Mendocino area. All seasons; experiences change with weather and what is growing. No group cap stated. 30+ years foraging, 23 years teaching, Living Light and Esalen. Since 2009 as The Spontaneous Cafe, on the North Coast since 2008. Phone (707) 972-6647. Email chefmattsamuelson@gmail.com.
+See CONTEXT.md "Client facts". Prices (final): 3 hours $300, 6 hours $500, 12 hours $1,000, for any service. Ingredients billed at cost on chef and class days. Catering beyond a day is quoted per event. The old $500 full day / $250 half day figures are gone. Greater Mendocino area. All seasons; experiences change with weather and what is growing. No group cap stated. 30+ years foraging, 23 years teaching, Living Light and Esalen. Since 2009 as The Spontaneous Cafe, on the North Coast since 2008. Phone (707) 972-6647. Email chefmattsamuelson@gmail.com.
 
 Mendocino produce by season, for sample menus (plausible, mark the menu "sample"): 
 - Spring: nettles, miner's lettuce, wild radish, morels, fiddleheads, spring lamb, Dungeness crab (season runs to June), asparagus, strawberries late.

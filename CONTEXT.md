@@ -11,7 +11,7 @@ Engagement: MOSI Consulting Inc for Chef Matt Samuelson, Mendocino, CA. Proposal
 - Customers: San Francisco weekenders, Mendocino tourists, referrals. Demand for private-event cheffing.
 - Stories: free community weekend cheffing for Mendocino; a tourist couple's foraging day (salt harvest, mushrooms, farm stands) ending in a multi-course dinner in their rental; a couple who foraged as part of their engagement trip.
 - Guest quote (paraphrased by Mohammed): freshest, most nature-to-table meal I have ever had; learned more about California nature and what is edible than expected; Matt is an expert with worldwide practical and theoretical foraging experience.
-- Prices: experiences $500 full day, $250 half day. Private chef: from $500 per day, ingredients billed at cost (CONFIRM WITH MATT). Catering: quoted per event (CONFIRM WITH MATT).
+- Prices (changed by Mohammed 2026-09-07, supersedes the earlier $500/$250): three tiers by hours, for any service. 3 hours $300. 6 hours $500. 12 hours $1,000. Ingredients billed at cost on chef and class days. Catering beyond a day is quoted per event.
 - Area: greater Mendocino. All seasons, experiences change with weather and what is growing. No group cap stated.
 - Words for the brand: whole foods, farm-to-table, quality, local, organic, resourceful.
 
@@ -28,7 +28,7 @@ Engagement: MOSI Consulting Inc for Chef Matt Samuelson, Mendocino, CA. Proposal
 - Five hero video loops. Home: hands at a pan over flame. Foraging: moss and mushroom macro. Private Chef: plating at a home table. Catering: long table being set. Classes: knife on board. Stock loops first; AI-generated loops (Minimax Hailuo image-to-video, Kling via fal.ai) after design approval, ambience only, never a specific dish.
 - Copy in first person (Matt). Reversible.
 - Four seasonal sample menus drafted from Mendocino produce, labelled as samples that change with the season.
-- Prices shown on the site.
+- Prices shown on the site as the three hour tiers.
 - Placeholder photos with a swap list in docs/SWAP-LIST.md. Trust and safety copy skipped for the demo.
 - Full name "Matt Samuelson" in page titles. "Chef Matt Mendocino" in search returns Matthew Kammerer of Harbor House.
 - Skills: ui-ux-pro-max only (installed at .claude/skills/ui-ux-pro-max).
@@ -42,3 +42,9 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 - 34 `<!-- CONFIRM -->` tags in src/pages mark assumptions for Matt. Two prices carry a visible "confirm with Matt" chip.
 - 2026-09-07 later: Mohammed approved. Committed. Deployed to https://spontaneous-cafe.vercel.app (Vercel project spontaneous-cafe, team mohsprojects). Formspree form maeypdpl wired with AJAX submit and plain-POST fallback. AI loops generated on fal.ai Hailuo 02 from the placeholder photos (see README). Prose anti-slop pass run over every page.
 - Still open: DNS switch of spontaneouscafe.com to Vercel (needs Matt), Matt's own photos and the 34 CONFIRM answers, privacy effective date.
+
+## Google Business Profile (created by Mohammed 2026-09-07)
+- Public Maps link: https://www.google.com/maps?cid=7343978535458024901 (name "Spontaneous Cafe"). Place ID not yet extracted; the review link comes from the GBP dashboard "Ask for reviews" once verified.
+
+## Voice change (2026-09-07)
+- Mohammed: first person throughout is too much, and sections that echo the interview answers verbatim ("Six words I actually mean") read as forced. Rewrite pending research on register.
