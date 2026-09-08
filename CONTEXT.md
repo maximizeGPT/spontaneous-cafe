@@ -63,3 +63,8 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 - No figure captions describing images.
 - Tone: plainer. No count-plus-twist headings ("Four things, and none of them is a recipe"). Private chef page is prose, not a step list.
 - Review markup (confirm chips, placeholder badges) is stripped from production builds; `REVIEW=1 python3 build.py` keeps it.
+
+## Build state (2026-09-08)
+- Live at https://spontaneous-cafe.vercel.app after rounds 2 and 3. Two audit workflows run (docs/AUDIT-1-FINDINGS.md technical, docs/AUDIT-2-FINDINGS.md design/copy/IA/conversion), fixes applied per docs/FIX-BRIEF-2.md including Mohammed's round-3 corrections.
+- Questionnaire for Matt: docs/to-questionnaire-matt.md, Google Doc "Spontaneous Cafe website: questions for Matt" (30 questions). Earlier docs renamed "superseded".
+- Still open: DNS switch (Matt), Matt's photos and answers, Twilio or Telegram credentials for /api/notify, the copy-register research agent never returned (rewrite proceeded on the brief).
