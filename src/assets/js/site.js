@@ -339,7 +339,7 @@
     e.preventDefault();
     revealWithin(target);
     if (history.pushState) history.pushState(null, '', a.getAttribute('href'));
-    target.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
+    target.scrollIntoView({ behavior: 'auto', block: 'start' });
   });
   window.addEventListener('hashchange', function () {
     block(function () { jumpToHash('auto'); });
