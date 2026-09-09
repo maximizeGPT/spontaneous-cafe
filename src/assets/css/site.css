@@ -133,14 +133,19 @@ button { font: inherit; }
 /* A short block of text beside a photo: centre it so the column reads as
    deliberate space rather than a hole under the last line. */
 .split--center { align-items: center; }
-/* A figure that fills its column when the facing text runs longer than a
-   4:3 crop would, instead of leaving the image column short. */
-.split > .figure--fill { align-self: stretch; }
-.split > .figure--fill img { height: 100%; aspect-ratio: auto; }
+/* A figure that matches the height of the facing text column, in either
+   direction: the image column is never short, and never runs past the last
+   line of the text. The image is taken out of flow so it contributes no
+   height of its own and the text alone sizes the row. Single column below
+   the split width, where it goes back to a normal 4:3 crop. */
+@media (min-width: 901px) {
+  .split > .figure--fill { align-self: stretch; position: relative; min-height: 260px; }
+  .split > .figure--fill img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+}
 /* Text-only sections: heading column left, body column right, so no block leaves half the width empty. */
 .prose-split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: var(--space-6) var(--space-7); align-items: start; }
 .prose-split > .section-head { margin-bottom: 0; }
-.prose-split .faq, .prose-split .measure { max-width: none; }
+.prose-split .measure { max-width: none; }
 .split:has(> .form) { align-items: start; }
 .stack { display: flex; flex-direction: column; gap: var(--space-4); }
 @media (max-width: 900px) {
@@ -329,6 +334,9 @@ button { font: inherit; }
 .course h4 { font-size: var(--text-lg); font-weight: 500; }
 .course p { font-size: var(--text-sm); color: var(--ink-soft); }
 .menu__foot { margin-top: var(--space-5); font-size: var(--text-sm); color: var(--ink-mute); text-align: center; font-style: italic; font-family: var(--font-display); }
+/* An odd number of courses would leave the bottom right cell empty; the last
+   one takes the full row instead. */
+.menu__courses > .course:last-child:nth-child(odd) { grid-column: 1 / -1; }
 @media (max-width: 700px) { .menu__courses { grid-template-columns: 1fr; } }
 
 /* Menu tabs (service pages with several seasons) */
@@ -351,24 +359,30 @@ button { font: inherit; }
 .quote cite { font-style: normal; font-size: var(--text-sm); color: var(--sage-soft); letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* Prices */
-.prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); }
+/* Cards size to their own content. Equal heights would push the button of a
+   short card a long way below its last bullet. */
+.prices { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); align-items: start; }
 .price { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
 .price h3 { font-size: var(--text-lg); }
 .price p { font-size: var(--text-sm); color: var(--ink-soft); }
 .price .price__amount { font-family: var(--font-display); font-size: var(--text-3xl); line-height: 1; color: var(--green); font-variant-numeric: tabular-nums; }
 .price .price__amount small { font-family: var(--font-body); font-size: var(--text-sm); color: var(--ink-mute); margin-left: 0.25em; }
 .price ul { font-size: var(--text-sm); color: var(--ink-soft); padding-left: 1.1em; display: flex; flex-direction: column; gap: 0.25rem; }
-.price > .btn { margin-top: auto; align-self: flex-start; }
+.price > .btn { margin-top: var(--space-2); align-self: flex-start; }
 .price > .link-arrow { margin-top: var(--space-3); }
 .price--confirm { border-style: dashed; }
 .price--wide { grid-column: 1 / -1; }
+/* The wide card carries two stacks: the amount and what the tier covers on
+   the left, the description, the list and the button on the right. Each stack
+   flows on its own so neither column waits on the other's row height. */
+.price--wide > .price__lead, .price--wide > .price__detail { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.price--wide > .price__lead { gap: var(--space-2); }
+.price--wide > .price__detail > .btn { align-self: flex-start; margin-top: var(--space-1); }
 @media (min-width: 700px) {
   .price--wide {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     column-gap: var(--space-7); align-items: start;
   }
-  .price--wide > ul, .price--wide > .btn { grid-column: 2; }
-  .price--wide > :not(ul):not(.btn) { grid-column: 1; }
 }
 .tag-confirm { display: inline-block; align-self: flex-start; font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; background: var(--butter-soft); color: var(--red-deep); padding: 0.15rem 0.5rem; border-radius: 999px; font-weight: 600; }
 @media (max-width: 600px) { .prices { grid-template-columns: 1fr; } }
@@ -383,6 +397,8 @@ button { font: inherit; }
 .details dt { font-weight: 600; color: var(--green); font-size: var(--text-sm); letter-spacing: 0.04em; }
 .details dd { margin: var(--space-1) 0 0; color: var(--ink-soft); font-size: var(--text-sm); }
 .details > div { padding-bottom: var(--space-3); border-bottom: 1px solid var(--line); }
+/* One column, for a details list that fills a text column beside a photo. */
+.details--stack { grid-template-columns: 1fr; gap: var(--space-3); }
 @media (max-width: 600px) { .details { grid-template-columns: 1fr; } }
 
 /* Sub-experiences (forest bathing, farm tours, dinner parties) */
@@ -396,6 +412,19 @@ button { font: inherit; }
 
 /* FAQ / good to know */
 .faq { max-width: var(--measure); }
+/* At full width the questions run in two columns, so four or five of them
+   fill the row instead of leaving half the page empty. */
+@media (min-width: 900px) {
+  .faq--cols {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--space-7); align-items: start; max-width: none;
+  }
+  .faq--cols > details { min-width: 0; }
+  /* An odd last question takes the full row rather than leaving a cell empty. */
+  .faq--cols > details:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  /* Close the bottom of the last row on both sides. */
+  .faq--cols > details:nth-last-child(2):nth-child(odd) { border-bottom: 1px solid var(--line); }
+}
 .faq details { border-top: 1px solid var(--line); padding: var(--space-3) 0; }
 .faq details:last-child { border-bottom: 1px solid var(--line); }
 .faq summary { cursor: pointer; font-family: var(--font-display); font-size: var(--text-lg); list-style: none; display: flex; justify-content: space-between; gap: var(--space-4); align-items: center; min-height: 44px; }
