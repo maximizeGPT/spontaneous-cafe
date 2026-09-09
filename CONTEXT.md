@@ -68,3 +68,6 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 - Live at https://spontaneous-cafe.vercel.app after rounds 2 and 3. Two audit workflows run (docs/AUDIT-1-FINDINGS.md technical, docs/AUDIT-2-FINDINGS.md design/copy/IA/conversion), fixes applied per docs/FIX-BRIEF-2.md including Mohammed's round-3 corrections.
 - Questionnaire for Matt: docs/to-questionnaire-matt.md, Google Doc "Spontaneous Cafe website: questions for Matt" (30 questions). Earlier docs renamed "superseded".
 - Still open: DNS switch (Matt), Matt's photos and answers, Twilio or Telegram credentials for /api/notify, the copy-register research agent never returned (rewrite proceeded on the brief).
+
+## Round 4 (2026-09-08): block titles and ledes
+- Mohammed: every remaining complaint was a section title, eyebrow or lede. Rules in docs/FIX-BRIEF-3.md. Caveat accent restored, on the load-bearing word pair of hero h1 and CTA h2 only. Cite lines carry a leading dash.
