@@ -328,8 +328,21 @@
 
   // A hash can also change after load (an in-page link the router-less site
   // still handles natively); jump and reveal the same way each time.
+  // In-page anchors: the script owns the scroll, so the native fragment jump and a
+  // second programmatic scroll never race each other (that race left the page at 0).
+  doc.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || a.getAttribute('href').length < 2) return;
+    var target;
+    try { target = doc.querySelector(a.getAttribute('href')); } catch (err) { target = null; }
+    if (!target) return;
+    e.preventDefault();
+    revealWithin(target);
+    if (history.pushState) history.pushState(null, '', a.getAttribute('href'));
+    target.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
+  });
   window.addEventListener('hashchange', function () {
-    block(function () { jumpToHash(reduce.matches ? 'auto' : 'smooth'); });
+    block(function () { jumpToHash('auto'); });
   });
 
   /* ------------------------------------------------------ contact form */

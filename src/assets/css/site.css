@@ -57,7 +57,7 @@
 
 /* Reset, minimal */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; }
 /* The sticky header is ~76px tall; give every in-page anchor room so a jump
    or scrollIntoView doesn't tuck the target's top edge under it. */
 [id] { scroll-margin-top: 90px; }
@@ -451,7 +451,6 @@ button { font: inherit; }
   .js .reveal.is-in { opacity: 1; transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .hero__toggle { display: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
