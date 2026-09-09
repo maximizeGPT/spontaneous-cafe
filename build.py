@@ -108,7 +108,7 @@ def jsonld(meta, slug):
 
 
 IMG_RE = re.compile(r'<img\b([^>]*?)\ssrc="/assets/img/([A-Za-z0-9_-]+)\.jpg"([^>]*)>')
-DEFAULT_SIZES = '(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 420px'
+DEFAULT_SIZES = '(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 640px'
 def responsive_images(body):
     """Wrap <img src="/assets/img/x.jpg"> in <picture> with WebP and JPEG srcsets when tools/images.py variants exist.
     Optional data-sizes="..." on the img overrides the sizes attribute. Posters and og images are untouched (not <img>)."""

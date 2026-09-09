@@ -124,7 +124,7 @@ button { font: inherit; }
 .section-head .eyebrow { margin: 0; }
 .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
-.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-7); align-items: center; }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-7); align-items: start; }
 .split > *, .grid-2 > *, .grid-3 > * { min-width: 0; }
 .split--flip > :first-child { order: 2; }
 .split:has(> .form) { align-items: start; }
