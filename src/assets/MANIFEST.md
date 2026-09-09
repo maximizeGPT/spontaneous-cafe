@@ -32,3 +32,6 @@ See MANIFEST-photos.md (written by the sourcing agent) for source URL, creator a
 | src-berries.jpg | 12_wild_berries_in_hand.jpg |
 | plate.jpg | 13_plated_seasonal_dish.jpg |
 | matt.jpg, matt-kitchen.jpg, matt-square.jpg | Matt Cooking.png supplied by Mohammed 2026-09-07 (real, not a stand-in) |
+
+## Posters
+The five hero posters are frame 0 of loops generated from the stock photos, so each poster is the same image as a role file: home-poster = pan, foraging-poster = mushrooms-basket/svc-foraging, chef-poster = svc-chef, catering-poster = table-set/svc-catering, classes-poster = knife/svc-classes. Treat a poster and its role file as one photo when checking a page for repeats.

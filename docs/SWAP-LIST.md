@@ -14,7 +14,7 @@ Every image below is a free-licence stand-in (see `src/assets/MANIFEST.md` for s
 | img/svc-catering.jpg | Home service card | A real event table |
 | img/svc-classes.jpg | Home service card | Hands on a knife in a class |
 | img/src-market.jpg, src-shore.jpg, src-forest.jpg, src-farm.jpg, src-berries.jpg | Sourcing grid | Farm stand with the trust box, tide pools, the ridge, huckleberries in hand |
-| img/matt.jpg | About and home | Portrait, outdoors, natural light, vertical |
+| img/matt-kitchen.jpg (About hero), img/matt-square.jpg (Home) | Matt | Real photo received 2026-09-07; matt.jpg (portrait crop) is unused |
 | img/coast.jpg, salt.jpg, plate.jpg, group-cooking.jpg, forager.jpg, table-set.jpg, knife.jpg, pan.jpg, mushrooms-basket.jpg | Service pages | Salt harvest, a finished plate, a class in progress, a set table |
 
 ## Copy tagged for Matt

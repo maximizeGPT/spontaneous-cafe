@@ -130,6 +130,13 @@ button { font: inherit; }
 .split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-7); align-items: start; }
 .split > *, .grid-2 > *, .grid-3 > * { min-width: 0; }
 .split--flip > :first-child { order: 2; }
+/* A short block of text beside a photo: centre it so the column reads as
+   deliberate space rather than a hole under the last line. */
+.split--center { align-items: center; }
+/* A figure that fills its column when the facing text runs longer than a
+   4:3 crop would, instead of leaving the image column short. */
+.split > .figure--fill { align-self: stretch; }
+.split > .figure--fill img { height: 100%; aspect-ratio: auto; }
 /* Text-only sections: heading column left, body column right, so no block leaves half the width empty. */
 .prose-split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: var(--space-6) var(--space-7); align-items: start; }
 .prose-split > .section-head { margin-bottom: 0; }
@@ -161,6 +168,9 @@ button { font: inherit; }
 .btn--light { background: var(--linen); color: var(--green); border-color: var(--linen); }
 .btn--light:hover { background: var(--paper); color: var(--green); border-color: var(--paper); }
 .link-arrow { font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; gap: 0.35em; }
+/* A short list of links reads as a row, not as one link per grid track with
+   the rest of the track empty. */
+.link-row { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); }
 .link-arrow::after { content: "\2192"; transition: transform var(--dur-fast) var(--ease-out); }
 .link-arrow:hover::after { transform: translateX(3px); }
 
@@ -275,6 +285,8 @@ button { font: inherit; }
 .photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); }
 .photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius); }
 .photo-grid .span-2 { grid-column: span 2; }
+/* Two-up, for a grid that sits beside a long text column. */
+.photo-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .photo-grid .span-2 img { aspect-ratio: 2 / 1; }
 @media (max-width: 600px) { .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .photo-grid .span-2 { grid-column: span 2; order: -1; } }
 
@@ -360,6 +372,11 @@ button { font: inherit; }
 }
 .tag-confirm { display: inline-block; align-self: flex-start; font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; background: var(--butter-soft); color: var(--red-deep); padding: 0.15rem 0.5rem; border-radius: 999px; font-weight: 600; }
 @media (max-width: 600px) { .prices { grid-template-columns: 1fr; } }
+/* A price grid that also carries a full-width quote card: auto-fit counts the
+   wide card as a track and leaves an empty cell beside the three tiers, so the
+   tiers get explicit columns. */
+.prices--tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .prices--tiers { grid-template-columns: 1fr; } }
 
 /* Detail list (what's included, good to know) */
 .details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-7); }
@@ -424,6 +441,26 @@ button { font: inherit; }
   .contact-aside .big { font-size: 1.15rem; }
 }
 .contact-aside .rates p { font-size: var(--text-sm); }
+/* Contact: the form runs much longer than the details beside it, so the
+   questions sit under them and both columns finish together. Below the
+   stacking width everything returns to source order, form before questions. */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-7); align-items: start; }
+.contact-grid > * { min-width: 0; }
+.contact-grid > .contact-aside { grid-column: 1; grid-row: 1; }
+.contact-grid > .form { grid-column: 2; grid-row: 1 / span 2; }
+.contact-grid > .contact-faq { grid-column: 1; grid-row: 2; }
+.contact-grid > .contact-faq .faq { max-width: none; }
+@media (max-width: 1100px) {
+  .contact-grid { grid-template-columns: 1fr; gap: var(--space-7); }
+  .contact-grid > .contact-aside, .contact-grid > .form, .contact-grid > .contact-faq { grid-column: 1; grid-row: auto; }
+}
+
+/* Policy pages: heading left, body right, so the page is not one narrow
+   column with the rest of the width empty. */
+.policy { display: grid; gap: var(--space-7); }
+.policy .prose-split .measure { max-width: var(--measure); }
+/* Policy headings label a clause; they are not display type. */
+.policy h2 { font-size: var(--text-xl); }
 
 /* Footer */
 .site-footer { background: var(--green); color: var(--sage-soft); padding-block: var(--space-7) var(--space-6); }
