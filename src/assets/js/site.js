@@ -49,54 +49,84 @@
     var mq = window.matchMedia('(max-width: 900px)');
     var label = toggle.querySelector('.label');
 
+    // Never cache the breakpoint. mq.matches is read fresh every time any
+    // of these run, so a resize is never the only thing keeping state
+    // correct — a toggle click, a link click or Escape all recompute it too.
+    function isMobile() { return mq.matches; }
     function isOpen() { return nav.classList.contains('is-open'); }
 
-    function syncInert() {
-      if (mq.matches && !isOpen()) nav.setAttribute('inert', '');
-      else nav.removeAttribute('inert');
-    }
-
-    function setState(open) {
+    // The single place that writes state. inert is derived from the
+    // breakpoint and the open flag every time, so desktop can never end up
+    // stuck inert (or stuck open) no matter how it got there.
+    function render(open) {
       nav.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (label) label.textContent = open ? 'Close' : 'Menu';
-      syncInert();
+      if (isMobile() && !open) nav.setAttribute('inert', '');
+      else nav.removeAttribute('inert');
     }
 
     function close(refocus) {
       if (!isOpen()) return;
-      setState(false);
+      render(false);
       if (refocus) toggle.focus();
+    }
+
+    // The one invariant this block exists to protect: on desktop the drawer
+    // is always closed and never inert. A resize crossing 900px is NOT
+    // guaranteed to fire a 'resize' or media-query 'change' event (some
+    // programmatic viewport changes skip both), so this is also called
+    // defensively at the top of every document-level listener below —
+    // whatever the next click, keypress or focus change is, it self-heals
+    // the state first instead of trusting a stale is-open/inert combo.
+    function correct() {
+      if (!isMobile() && isOpen()) { render(false); return true; }
+      render(isMobile() && isOpen()); // just resync inert to the current flag
+      return false;
     }
 
     function outside(node) {
       return !(nav.contains(node) || toggle.contains(node));
     }
 
-    syncInert();
-    if (mq.addEventListener) mq.addEventListener('change', syncInert);
-    else if (mq.addListener) mq.addListener(syncInert);
+    correct();
+    if (mq.addEventListener) mq.addEventListener('change', correct);
+    else if (mq.addListener) mq.addListener(correct);
+    // Belt and suspenders: a plain resize listener too, since it and the
+    // media-query change event can each fire without the other in some
+    // browsers and automated/emulated resizes.
+    window.addEventListener('resize', correct);
 
-    toggle.addEventListener('click', function () { setState(!isOpen()); });
+    toggle.addEventListener('click', function () {
+      correct();
+      // Guard even though the toggle is display:none above 900px: ignore a
+      // stray activation on desktop instead of trusting whatever state the
+      // drawer happened to be left in.
+      render(isMobile() ? !isOpen() : false);
+    });
 
     doc.addEventListener('keydown', function (e) {
+      correct();
       if (e.key === 'Escape') close(true);
     });
 
     // A link in the drawer navigates; the drawer should not stay open behind it.
     nav.addEventListener('click', function (e) {
+      correct();
       var a = e.target && e.target.closest ? e.target.closest('a') : null;
-      if (a && mq.matches) close(false);
+      if (a && isMobile()) close(false);
     });
 
     // Focus leaving the drawer closes it, so tabbing past the last link
     // does not leave an open panel over the page.
     doc.addEventListener('focusin', function (e) {
-      if (mq.matches && isOpen() && outside(e.target)) close(false);
+      if (correct()) return;
+      if (isMobile() && isOpen() && outside(e.target)) close(false);
     });
 
     doc.addEventListener('click', function (e) {
-      if (mq.matches && isOpen() && outside(e.target)) close(false);
+      if (correct()) return;
+      if (isMobile() && isOpen() && outside(e.target)) close(false);
     });
   });
 
@@ -244,14 +274,62 @@
   });
 
   /* ---------------------------------------------------- reveal on scroll */
+  // Marks .reveal descendants of a target section (and the section itself,
+  // if it happens to carry the class) as in-view right away, so a direct
+  // link to an anchor never lands on a section still sitting at opacity 0.
+  function revealWithin(root) {
+    list('.reveal', root).forEach(function (el) { el.classList.add('is-in'); });
+    if (root.classList && root.classList.contains('reveal')) root.classList.add('is-in');
+  }
+
+  // Jumps to location.hash immediately: reveal first, then scroll, so the
+  // section is already visible for the scroll rather than fading in after.
+  function jumpToHash(behavior) {
+    if (!location.hash) return;
+    var target;
+    try { target = doc.querySelector(location.hash); } catch (e) { target = null; }
+    if (!target) return;
+    revealWithin(target);
+    target.scrollIntoView({ behavior: behavior, block: 'start' });
+  }
+
   block(function () {
-    if (reduce.matches || !('IntersectionObserver' in window)) { revealAll(); return; }
+    var behavior = reduce.matches ? 'auto' : 'smooth';
+
+    if (reduce.matches || !('IntersectionObserver' in window)) {
+      revealAll();
+      jumpToHash('auto');
+      return;
+    }
+
+    // Whatever is already in the viewport on load is marked in synchronously,
+    // before the observer's first callback (which can lag a frame or two
+    // behind first paint) has a chance to leave it sitting at opacity 0.
+    var vh = window.innerHeight || doc.documentElement.clientHeight;
+    list('.reveal').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh && r.bottom > 0) el.classList.add('is-in');
+    });
+
+    // A direct link to an in-page anchor (e.g. /foraging/#more): reveal and
+    // land on that section now, instead of waiting on scroll + observer.
+    jumpToHash(behavior);
+
     var ro = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('is-in'); ro.unobserve(en.target); }
       });
     }, { rootMargin: '0px 0px -8% 0px' });
-    list('.reveal').forEach(function (el) { ro.observe(el); });
+    list('.reveal').forEach(function (el) {
+      if (el.classList.contains('is-in')) return;
+      ro.observe(el);
+    });
+  });
+
+  // A hash can also change after load (an in-page link the router-less site
+  // still handles natively); jump and reveal the same way each time.
+  window.addEventListener('hashchange', function () {
+    block(function () { jumpToHash(reduce.matches ? 'auto' : 'smooth'); });
   });
 
   /* ------------------------------------------------------ contact form */
