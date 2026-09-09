@@ -127,11 +127,15 @@ button { font: inherit; }
 .split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-7); align-items: start; }
 .split > *, .grid-2 > *, .grid-3 > * { min-width: 0; }
 .split--flip > :first-child { order: 2; }
+/* Text-only sections: heading column left, body column right, so no block leaves half the width empty. */
+.prose-split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: var(--space-6) var(--space-7); align-items: start; }
+.prose-split > .section-head { margin-bottom: 0; }
+.prose-split .faq, .prose-split .measure { max-width: none; }
 .split:has(> .form) { align-items: start; }
 .stack { display: flex; flex-direction: column; gap: var(--space-4); }
 @media (max-width: 900px) {
   .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .split { grid-template-columns: 1fr; gap: var(--space-6); }
+  .split, .prose-split { grid-template-columns: 1fr; gap: var(--space-6); }
   .split--flip > :first-child { order: 0; }
 }
 @media (max-width: 600px) {
