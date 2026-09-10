@@ -78,3 +78,6 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 - Group size for private dinners: one person (solo diners welcome) up to twelve; larger groups inquire directly.
 - Services combine into one booking (foraging morning then dinner; class that becomes the meal; retreat foraging walk then catered dinner; multi-day stay with a different service each day).
 - Home page shows pricing as one line, "Starting at $300"; full tiers stay on service pages and Contact.
+
+## Revision 2026-09-09, state
+Live. Reports per page in docs/revision-2026-09-09/ (REPORT.md compiled). Home carries one price line; About is the career story; Private Chef has the Albion option and the 1 to 12 range; all service pages link to /#build. Open for Matt: 44 CONFIRM tags, questionnaire section 8 (story facts, Albion wording, group range).
