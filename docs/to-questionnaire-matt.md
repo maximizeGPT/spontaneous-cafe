@@ -198,6 +198,50 @@ _The alt text and caption say Chef Matt's kitchen above the Mendocino coast, wit
 
 >
 
+## 8. Your story
+
+### Besides Peru, Thailand and India, where else have you cooked?
+
+_On the About page: chef at yoga retreats in Peru, then Thailand and India. Nothing else is named. If there are other countries or cities, tell me and I will add them in order._
+
+>
+
+### Thailand and India: what was the work?
+
+_On the page it says only that they came after Peru. I do not know whether those were retreats, restaurants, private houses or something else, or how long each lasted._
+
+>
+
+### The LA celebrity clients. Can any of them be named, and do you have their permission?
+
+_On the page: "In Los Angeles I cooked privately for several celebrity clients. I am not going to name them on a website." That line stays as it is unless you send me names and say you have permission to use them._
+
+>
+
+### What years were Peru, Los Angeles and Living Light?
+
+_The page runs them in order with no dates, and says you moved north over about thirty years and settled in Mendocino in 2009. Rough years are fine, and they let me put the story in a sequence a reader can follow._
+
+>
+
+### The foraging study in Mendocino. What was it, and when?
+
+_On the page: "here I studied it formally, the plants, the mushrooms and the shore." I do not know whether that was a course, a mentor, a certification, a mycological society, or years of your own reading. This is the fact that separates you from a private chef who buys mushrooms, so it is the one I most want to get right._
+
+>
+
+### Your own kitchen in Albion. Is that the right way to describe it?
+
+_The private chef page now offers guests two options: you cook at their home or rental, or they come to your home kitchen in Albion, CA. Tell me whether "home kitchen in Albion" is accurate, how many people can eat there, and whether you want it named on the site at all._
+
+>
+
+### Is one to twelve the right group range, and what happens above twelve?
+
+_On the page: private dinners run from one person (solo diners welcome) up to twelve, and anything larger goes to you directly. Twelve is my number and I want yours, along with what changes above it (a second pair of hands, a quote instead of a tier, or a flat no)._
+
+>
+
 ## Anything else?
 
 ### Is there anything on the site you would never say, or anything you always say to a guest that is missing?

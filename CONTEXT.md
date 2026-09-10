@@ -71,3 +71,10 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 
 ## Round 4 (2026-09-08): block titles and ledes
 - Mohammed: every remaining complaint was a section title, eyebrow or lede. Rules in docs/FIX-BRIEF-3.md. Caveat accent restored, on the load-bearing word pair of hero h1 and CTA h2 only. Cite lines carry a leading dash.
+
+## Client facts added 2026-09-09 (from Mohammed's revision brief)
+- Career: chef at yoga retreats in Peru; cooked in Thailand and India (other countries only if Matt confirms). In LA, private chef for several celebrities (no names without names and permission). Instructor at Living Light Culinary Arts Institute in Fort Bragg. Moved up the California coast over about thirty years and settled in Mendocino in 2009 (use 2009 everywhere; "2008" is retired). In Mendocino he formally studied nature and foraging; that training is the through-line that turned cooking into The Spontaneous Cafe.
+- Private chef dinners happen at the guest's home or rental, or at Matt's home kitchen in Albion, CA (for guests who do not want to host or whose rental kitchen is limited).
+- Group size for private dinners: one person (solo diners welcome) up to twelve; larger groups inquire directly.
+- Services combine into one booking (foraging morning then dinner; class that becomes the meal; retreat foraging walk then catered dinner; multi-day stay with a different service each day).
+- Home page shows pricing as one line, "Starting at $300"; full tiers stay on service pages and Contact.
