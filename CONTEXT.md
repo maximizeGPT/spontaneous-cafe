@@ -81,3 +81,17 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 
 ## Revision 2026-09-09, state
 Live. Reports per page in docs/revision-2026-09-09/ (REPORT.md compiled). Home carries one price line; About is the career story; Private Chef has the Albion option and the 1 to 12 range; all service pages link to /#build. Open for Matt: 44 CONFIRM tags, questionnaire section 8 (story facts, Albion wording, group range).
+
+## Resume facts (2026-09-11)
+Matt's resume arrived as docs/source/matt-resume.txt. These are confirmed fact and beat any earlier guess. The dated roles:
+- Living Light Culinary Arts Institute, Fort Bragg, CA. Head chef and culinary instructor. 2000 to 2004, 2008 to 2009, 2017 to 2019. Kitchen fed 20 to 40 students and guests, two or three meals daily. Trained students and interns, developed curriculum. This is the "culinary school in Fort Bragg" from the 2026-09-09 brief.
+- Film Transsiberian. Personal chef. 2006 to 2007. Cooked for Woody Harrelson, Sir Ben Kingsley and Emily Mortimer. Only the film and Woody Harrelson are on the site, under a CONFIRM for permission to name the cast publicly.
+- High Integrity Foods. Co-founder. 2006 to present. Organic cold-pressed chocolate line.
+- Alive & Radiant Foods. Senior R&D chef. 2011 to 2015. Raw snacks distributed in the US and Canada. Designed a production kitchen.
+- Flow Restaurant and Lounge, Mendocino, CA. Executive chef. 2015 to 2017. Menu redesigned around vegan, raw and gluten free dishes. Sourcing partnerships with local farmers and producers.
+- International consulting and retreats (undated). North America, South America, Asia and Australia. Retreat menus for 20 to 80 guests, plus culinary intensives for hospitality teams and culinary professionals.
+- Catering capacity: events from 20 to 350 guests. On /catering/ under Good to know.
+- Dietary range: menu development including vegan, raw and gluten free. Added to the private chef menu paragraph.
+- "Thirty years up the coast" is retired for "about twenty-five years": Living Light starts in 2000, so the dates only support twenty-five. The 2009 settling date stays. /foraging/ still says "more than thirty years" of foraging practice, which is a different claim and was left alone.
+- Resume email is mattsamuelson@yahoo.com. The site still uses chefmattsamuelson@gmail.com. Not changed; question added to the questionnaire.
+- Still not covered by the resume: Peru yoga retreats, Thailand, India, the LA private clients, the formal foraging study in Mendocino, the free town weekend. Those CONFIRM tags stay.

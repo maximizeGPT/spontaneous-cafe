@@ -8,6 +8,8 @@
 
 The site has a home page, four service pages (Foraging, Private Chef, Catering & Events, Cooking Classes), an About page and a contact form. Prices are on every service page as three tiers: 3 hours $300, 6 hours $500, 12 hours $1,000. Catering has a fourth card for larger events, marked "quoted per event". Sample menus are stamped as samples that change with the season. Your kitchen photo is in and used on the home page and About. Every other photo is a stand-in until yours arrive.
 
+Your resume arrived on 11 September, so the dated roles are now on the About page as fact: Living Light, Transsiberian, High Integrity Foods, Alive & Radiant, Flow. The questions those answered have come off this list.
+
 Each question below shows the guess that is on the page right now, in italics. If the guess is right, "yes" is a complete answer.
 
 ## How to answer
@@ -154,7 +156,7 @@ _On the page: yes, people book them for birthdays and anniversaries, the date st
 
 ### Where else have you taught, cooked or held residencies?
 
-_The About page has Living Light in Fort Bragg and Esalen written out, then an empty row headed "More" waiting for other schools, residencies and guest classes._
+_The About page has Living Light in Fort Bragg, with your years from the resume, and Esalen in Big Sur. Nothing else is named. Other schools, residencies and guest classes go in here._
 
 >
 
@@ -200,9 +202,9 @@ _The alt text and caption say Chef Matt's kitchen above the Mendocino coast, wit
 
 ## 8. Your story
 
-### Besides Peru, Thailand and India, where else have you cooked?
+### Which countries for the retreat and consulting work?
 
-_On the About page: chef at yoga retreats in Peru, then Thailand and India. Nothing else is named. If there are other countries or cities, tell me and I will add them in order._
+_Your resume says North America, South America, Asia and Australia. The About page says the same four, which reads vaguer than it needs to. Peru, Thailand and India are already named. Give me the rest of the countries and I will name them instead of the continents._
 
 >
 
@@ -212,15 +214,21 @@ _On the page it says only that they came after Peru. I do not know whether those
 
 >
 
-### The LA celebrity clients. Can any of them be named, and do you have their permission?
+### Can I name the Transsiberian cast on the site?
 
-_On the page: "In Los Angeles I cooked privately for several celebrity clients. I am not going to name them on a website." That line stays as it is unless you send me names and say you have permission to use them._
+_Your resume names Woody Harrelson, Sir Ben Kingsley and Emily Mortimer. The About page currently says you were the personal chef on Transsiberian in 2006 and 2007, "feeding Woody Harrelson and the rest of the cast on location". Naming a client on a public page is a different thing from naming one on a resume, so I want your yes before launch. Ben Kingsley and Emily Mortimer are not on the page at all; say the word and they go on, or Woody Harrelson comes off and the line reads "the cast" alone. The LA private clients stay unnamed either way, unless you send names and permission._
 
 >
 
-### What years were Peru, Los Angeles and Living Light?
+### What years were Peru and Los Angeles?
 
-_The page runs them in order with no dates, and says you moved north over about thirty years and settled in Mendocino in 2009. Rough years are fine, and they let me put the story in a sequence a reader can follow._
+_The resume dated everything else, so the About page now runs Living Light 2000 to 2004, 2008 to 2009 and 2017 to 2019, Transsiberian 2006 to 2007, High Integrity Foods from 2006, Alive & Radiant 2011 to 2015 and Flow 2015 to 2017. Peru, Thailand, India and Los Angeles are the only undated stretches left. Rough years are fine. I also changed "thirty years up the coast" to "about twenty-five years", because Living Light starting in 2000 makes twenty-five the number the dates support; tell me if thirty is right and the earlier years are just missing from the resume._
+
+>
+
+### Which email should the site publish?
+
+_The site uses chefmattsamuelson@gmail.com in the footer and on the contact page. Your resume gives mattsamuelson@yahoo.com. I have not changed anything. Tell me which one you read, and whether both should be listed._
 
 >
 
