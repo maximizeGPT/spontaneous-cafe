@@ -184,9 +184,35 @@ _I invented a late-summer six-course menu: beach salt with bread and cultured bu
 
 ## 7. Photos and the last details
 
-### Send everything you have: food, walks, tables, classes.
+Twenty photos arrived on 16 September, sent over by Sidd. Eleven are already placed on the site; the rest raised the questions below.
 
-_Your kitchen photo has arrived and is on the home page and the About page. Every other photo on the site is a stand-in. Phone photos are fine. Any number, do not sort them. Vertical shots and close-ups of what you found are the most useful._
+### Two cooks in the kitchen photo on About and Classes. Do I have your permission to keep using it, and do you want them named?
+
+_On the page: the photo of two cooks working trays in a bright kitchen is live on About and Classes. Neither cook is you, and both faces are visible. I need their permission before it stays up, and their names only if you and they want a credit._
+
+>
+
+### Three other men show up in the batch: one at a table of mushrooms, one holding spring onions, one behind sheet trays of black trumpets. Who are they, and is any of the three photos usable on the site?
+
+_On the page: none of these three are in use. Each shows a face I do not have permission for, so I held all three back._
+
+>
+
+### Two photos in the batch show a child: chanterelles spread on a red cloth, and the tide pools with a copper bowl. Both are held back. Is that child family of yours, and do I have consent to use either photo?
+
+_On the page: neither is in use. A minor's face, clear and identifiable, is why I set both aside rather than ask you after the fact._
+
+>
+
+### The rockfish photo: you holding a big one in the sun. Do you fish, and should the site's line about buying fish change?
+
+_On the page: About reads "I buy from a handful of small farms and the farmers market, meat and fish included." I held the catch photo back because it reads against that line. Tell me which one needs to change._
+
+>
+
+### What's still missing: a class in progress, the shore or salt harvest without a child in frame, a farm stand, a market stall, berries in hand, the coast, a knife on a board, and one wide landscape photo per service for the top of each page.
+
+_On the page: those eight spots are still stock photography. Anything phone-shot works; vertical or landscape, I will crop to fit._
 
 >
 

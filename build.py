@@ -109,28 +109,54 @@ def jsonld(meta, slug):
 
 IMG_RE = re.compile(r'<img\b([^>]*?)\ssrc="/assets/img/([A-Za-z0-9_-]+)\.jpg"([^>]*)>')
 DEFAULT_SIZES = '(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 640px'
+_WIDTH_CACHE = {}
+
+
+def pixel_width(path):
+    """Real pixel width of an image file, or None when it cannot be read.
+
+    Every srcset descriptor comes from here. The source photos are not all the
+    same size (828 px phone crops, 1000, 1280, 1448, 1600, 1800), so a fixed
+    1600w descriptor lies to the browser and it picks the wrong candidate.
+    """
+    if path not in _WIDTH_CACHE:
+        size = image_size(path)
+        _WIDTH_CACHE[path] = size[0] if size else None
+    return _WIDTH_CACHE[path]
+
+
 def responsive_images(body):
     """Wrap <img src="/assets/img/x.jpg"> in <picture> with WebP and JPEG srcsets when tools/images.py variants exist.
     Optional data-sizes="..." on the img overrides the sizes attribute. Posters and og images are untouched (not <img>)."""
     img_dir = os.path.join(SRC, 'assets', 'img')
     def repl(m):
         before, name, after = m.group(1), m.group(2), m.group(3)
-        widths = [w for w in (480, 800, 1200) if os.path.exists(os.path.join(img_dir, f'{name}-{w}.jpg'))]
-        if not widths or not os.path.exists(os.path.join(img_dir, f'{name}.webp')):
+        full_w = pixel_width(os.path.join(img_dir, f'{name}.jpg'))
+        if not full_w or not os.path.exists(os.path.join(img_dir, f'{name}.webp')):
+            return m.group(0)
+        # tools/images.py writes a variant only when it is smaller than the
+        # source, so absence is normal. Each descriptor is the file's own width.
+        variants = []
+        for w in (480, 800, 1200):
+            vw = pixel_width(os.path.join(img_dir, f'{name}-{w}.jpg'))
+            if vw:
+                variants.append((w, vw))
+        if not variants:
             return m.group(0)
         attrs = before + after
         sm = re.search(r'\sdata-sizes="([^"]+)"', attrs)
         sizes = sm.group(1) if sm else DEFAULT_SIZES
         attrs = re.sub(r'\sdata-sizes="[^"]+"', '', attrs)
-        full_w = 1600
-        wm = re.search(r'\swidth="(\d+)"', attrs)
         # The img keeps its class; the wrapping <picture> gets the same class so
         # rules like .ph and .span-2 still target it (picture is display:contents
         # by default, so it otherwise takes no part in layout).
         cm = re.search(r'\sclass="([^"]*)"', attrs)
         picture_class = f' class="{cm.group(1)}"' if cm else ''
-        jpg = ', '.join([f'/assets/img/{name}-{w}.jpg {w}w' for w in widths] + [f'/assets/img/{name}.jpg {full_w}w'])
-        webp = ', '.join([f'/assets/img/{name}-{w}.webp {w}w' for w in widths] + [f'/assets/img/{name}.webp {full_w}w'])
+        jpg = ', '.join([f'/assets/img/{name}-{w}.jpg {vw}w' for w, vw in variants]
+                        + [f'/assets/img/{name}.jpg {full_w}w'])
+        webp_w = pixel_width(os.path.join(img_dir, f'{name}.webp')) or full_w
+        webp = ', '.join([f'/assets/img/{name}-{w}.webp {pixel_width(os.path.join(img_dir, f"{name}-{w}.webp")) or vw}w'
+                          for w, vw in variants] + [f'/assets/img/{name}.webp {webp_w}w'])
         return (f'<picture{picture_class}><source type="image/webp" srcset="{webp}" sizes="{sizes}">'
                 f'<img{attrs} src="/assets/img/{name}.jpg" srcset="{jpg}" sizes="{sizes}"></picture>')
     return IMG_RE.sub(repl, body)

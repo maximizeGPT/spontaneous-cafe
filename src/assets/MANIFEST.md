@@ -28,7 +28,7 @@ See MANIFEST-photos.md (written by the sourcing agent) for source URL, creator a
 | src-farm.jpg | 08_vegetable_garden_rows.jpg |
 | svc-classes.jpg, knife.jpg | 09_knife_skills_cutting_board.jpg |
 | group-cooking.jpg | 10_group_cooking_laughing.jpg |
-| src-shore.jpg, salt.jpg | 11_tide_pools_sea_salt.jpg |
+| src-shore.jpg | 11_tide_pools_sea_salt.jpg |
 | src-berries.jpg | 12_wild_berries_in_hand.jpg |
 | plate.jpg | 13_plated_seasonal_dish.jpg |
 | matt.jpg, matt-kitchen.jpg, matt-square.jpg | Matt Cooking.png supplied by Mohammed 2026-09-07 (real, not a stand-in) |
@@ -37,7 +37,7 @@ See MANIFEST-photos.md (written by the sourcing agent) for source URL, creator a
 
 Twenty files arrived from Matt: 17 iPhone screenshots of photos (828x1792 PNG, photo inside Photos-app chrome), two HEIC originals and one 2048x2048 JPEG. Raw files in `docs/source/photos-raw/`. The HEICs were converted with `sips -s format jpeg -s formatOptions 90`; the screenshots were cropped out of the phone chrome by largest-contiguous-content-block detection (`docs/source/photos-cropped/`). IMG_8363 was rotated 90 degrees clockwise to upright.
 
-Eleven role files now carry a real photo. A screenshot crop is at most 828 px wide, so none of them goes in a hero or a poster; the five hero posters stay on the stock frames.
+Twelve role files now carry a real photo. A screenshot crop is at most 828 px wide, so none of them goes in a hero or a poster; the five hero posters stay on the stock frames.
 
 | Role file | Source raw file | Description |
 |---|---|---|
@@ -50,9 +50,10 @@ Eleven role files now carry a real photo. A screenshot crop is at most 828 px wi
 | plate.jpg | IMG_1048.png | Wooden bowl of salad and edible flowers on a deck rail, green hillside behind. Kept at its native 1.47 ratio so the 4:3 and 16:9 slots both crop cleanly. |
 | table-set.jpg | IMG_1054.png | Bread, cheese and fruit laid out on a long wooden table on a deck in the trees, canvas tent behind. Two small background figures, no identifiable face. |
 | group-cooking.jpg | IMG_8363.heic | Two cooks working trays of food in a bright kitchen, a third person's hand in the foreground. 4032x3024 original, rotated upright and cropped 4:3. Neither cook is Matt. |
+| salad-bowls.jpg | IMG_1053.png | Wooden bowls of salad with serving tongs on a stainless prep table, jars of dressing behind. Cropped 4:3 out of the 828x1248 portrait (y 240 to 861) at quality 82, 828x621. Added 2026-09-16 for the Foraging dinner-party card, which until then repeated group-cooking.jpg. |
 | pan.jpg | IMG_1050.png | Eggs cooking in a cast iron pan on a deck rail above a wooded valley. No people. |
 
-Role files still on stock: svc-classes.jpg, src-market.jpg, src-shore.jpg, src-farm.jpg, src-berries.jpg, coast.jpg, salt.jpg, knife.jpg, and the five hero posters. See docs/SWAP-LIST.md for what each still needs.
+Role files still on stock: svc-classes.jpg, src-market.jpg, src-shore.jpg, src-farm.jpg, src-berries.jpg, coast.jpg, knife.jpg, and the five hero posters. salt.jpg was deleted on 2026-09-16: the file was byte for byte src-shore.jpg, and the About sourcing grid now points at src-shore.jpg. knife.jpg is still byte for byte svc-classes.jpg and sits on no page. See docs/SWAP-LIST.md for what each still needs.
 
 ### Raw files not used
 
@@ -61,7 +62,6 @@ Role files still on stock: svc-classes.jpg, src-market.jpg, src-shore.jpg, src-f
 | IMG_0527.heic | Matt holding a large rockfish, selfie in sun. 3088x2316. | The site says Matt does not hunt or fish and meat and fish are bought (CONTEXT.md round 3). A catch photo contradicts the copy. |
 | IMG_1045.png | A man (not Matt) in an apron at a table of foraged mushrooms, greens and garlic. | Prominent face, and it is not Matt. |
 | IMG_1051.png | A pile of morels on a patterned cloth in low sun. Landscape, sharp. | No slot left; mushrooms-basket.jpg went to the stronger basket photo. Good spare. |
-| IMG_1053.png | Salad bowls with tongs on a stainless prep table, commercial kitchen. | No slot left; svc-catering.jpg went to the stronger plating-line photo. Good spare. |
 | IMG_1055.png | A child crouched behind chanterelles spread on a red cloth. | A minor's face, prominent and identifiable. |
 | IMG_1056.png | A large pot over an open fire at dusk, one figure with back turned. Portrait, dark. | No matching slot, and the frame is dark and soft. |
 | IMG_1057.png | A man (not Matt) in a kitchen holding spring onions and a jar of prepped vegetables. | Prominent face, and it is not Matt. |

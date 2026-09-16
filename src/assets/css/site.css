@@ -223,6 +223,9 @@ button { font: inherit; }
 .hero--short { min-height: min(62vh, 560px); }
 .hero__media { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
 .hero__media video, .hero__media img { width: 100%; height: 100%; object-fit: cover; }
+/* A hero whose subject sits high in the frame: the default centre crop cuts the
+   top of the head off at hero heights. */
+.hero--face-high .hero__media img { object-position: 50% 16%; }
 .hero__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(38,30,22,0.50) 0%, rgba(38,30,22,0.18) 55%, rgba(38,30,22,0.04) 100%), linear-gradient(180deg, rgba(38,30,22,0.06) 0%, rgba(38,30,22,0.22) 45%, rgba(38,30,22,0.86) 100%); }
 .hero .wrap { padding-block: var(--space-8) var(--space-7); width: 100%; }
 .hero__inner { max-width: 44rem; display: flex; flex-direction: column; gap: var(--space-4); }

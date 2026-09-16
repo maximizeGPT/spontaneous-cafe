@@ -35,7 +35,7 @@ Banned, per Mohammed's writing rules: em dashes; "not X, it's Y" constructions; 
 ## Assets (placeholders, fixed names; use only these)
 Videos in /assets/video/: home-pan.mp4, foraging-moss.mp4, chef-plating.mp4, catering-table.mp4, classes-knife.mp4
 Posters in /assets/img/: home-poster.jpg, foraging-poster.jpg, chef-poster.jpg, catering-poster.jpg, classes-poster.jpg
-Photos in /assets/img/: svc-foraging.jpg, svc-chef.jpg, svc-catering.jpg, svc-classes.jpg, src-market.jpg, src-shore.jpg, src-forest.jpg, src-farm.jpg, src-berries.jpg, matt.jpg, coast.jpg, salt.jpg, plate.jpg, group-cooking.jpg, forager.jpg, table-set.jpg, knife.jpg, pan.jpg, mushrooms-basket.jpg
+Photos in /assets/img/: svc-foraging.jpg, svc-chef.jpg, svc-catering.jpg, svc-classes.jpg, src-market.jpg, src-shore.jpg, src-forest.jpg, src-farm.jpg, src-berries.jpg, matt.jpg, coast.jpg, plate.jpg, group-cooking.jpg, forager.jpg, table-set.jpg, knife.jpg, pan.jpg, mushrooms-basket.jpg, salad-bowls.jpg
 Always give width/height attributes (4:3 photos 800x600, 3:4 900x1200, square 600x600) and loading="lazy" below the hero. Alt text describes the picture, never says "image of".
 
 ## Facts you may use (nothing else; tag anything you must assume with <!-- CONFIRM --> in the HTML)
