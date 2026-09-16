@@ -95,3 +95,7 @@ Matt's resume arrived as docs/source/matt-resume.txt. These are confirmed fact a
 - "Thirty years up the coast" is retired for "about twenty-five years": Living Light starts in 2000, so the dates only support twenty-five. The 2009 settling date stays. /foraging/ still says "more than thirty years" of foraging practice, which is a different claim and was left alone.
 - Resume email is mattsamuelson@yahoo.com. The site still uses chefmattsamuelson@gmail.com. Not changed; question added to the questionnaire.
 - Still not covered by the resume: Peru yoga retreats, Thailand, India, the LA private clients, the formal foraging study in Mendocino, the free town weekend. Those CONFIRM tags stay.
+
+## Matt's photos (2026-09-16)
+- Twenty files arrived via Sidd in the Drive "Photos" folder (17 iPhone screenshots of photos at 828 px wide, two HEIC originals, one 2048 px JPEG). Raw in docs/source/photos-raw, cropped in docs/source/photos-cropped. Eleven role images are now real (foraging card, chef card, catering card, forest, mushroom basket, porcini log, plate, table, group cooking, pan). Only two photos show Matt himself; three other men appear in the batch and are held back; two photos of a child are held back; the rockfish photo is held back because the copy says fish is bought.
+- Still stock: classes card, shore and salt, market, farm, berries, coast, knife, and the five hero posters (screenshots are too small for heroes).
