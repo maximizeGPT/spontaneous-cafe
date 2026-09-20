@@ -587,7 +587,7 @@ picture.ph { display: block; position: relative; }
 .harvest-gallery__wide img { object-position: center 85%; }
 .harvest-gallery img[src*="home-good-4"] { object-position: right center; }
 .harvest-gallery figcaption { position: absolute; inset: auto 0 0; padding: 2.5rem 1rem 0.8rem; color: var(--paper); font-size: var(--text-sm); line-height: 1.3; background: linear-gradient(transparent, rgba(20, 25, 18, 0.85)); }
-.service__img .service__portrait { object-position: center top; }
+.harvest-gallery img[src*="home-good-9"] { object-position: center top; }
 .figure--harvest img { aspect-ratio: 4 / 5; object-position: center; max-height: 640px; }
 .testimonials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
 .testimonial { margin: 0; display: flex; flex-direction: column; gap: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--sage); }
@@ -607,4 +607,11 @@ picture.ph { display: block; position: relative; }
   .harvest-gallery .harvest-gallery__wide { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
   .harvest-gallery figure:last-child { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
   .figure--harvest img { max-height: none; }
+}
+
+/* Additional personal photographs keep the original service-card artwork intact. */
+.harvest-gallery--extras { margin-top: var(--space-3); grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: 230px; }
+@media (max-width: 600px) {
+  .harvest-gallery--extras { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
+  .harvest-gallery--extras figure, .harvest-gallery--extras figure:last-child { grid-column: auto; aspect-ratio: 3 / 4; }
 }

@@ -126,3 +126,5 @@ Use the resume to ground teaching claims: separate Living Light instructor perio
 - User requested Good 1–11 except Good 7 from the Photos Drive folder. All ten are now included exactly once across home service cards (3, 1, 10, 9), the sourcing gallery (11, 2, 4, 6, 8), and the About teaser (5). Good 7 is now reserved for the About page.
 - Each has an AI-assisted photographic edit and responsive JPEG/WebP exports; original Drive files are unchanged. Source mapping: docs/HOME-IMAGE-SOURCES.md.
 - Three invented testimonial examples appear in the home design, each labeled Sample testimonial with a section-level disclosure. No invented customer names, ratings or review schema. Replace with authorized real quotes for genuine testimonials.
+
+- Follow-up correction: restored the original four svc-* service-card images. Good 3, 1, 10 and 9 now appear in an additional row in Where the food comes from; all ten selected Good images remain on Home, with Good 5 in the About teaser.
