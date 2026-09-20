@@ -223,9 +223,6 @@ button { font: inherit; }
 .hero--short { min-height: min(62vh, 560px); }
 .hero__media { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
 .hero__media video, .hero__media img { width: 100%; height: 100%; object-fit: cover; }
-/* A hero whose subject sits high in the frame: the default centre crop cuts the
-   top of the head off at hero heights. */
-.hero--face-high .hero__media img { object-position: 50% 16%; }
 .hero__scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(38,30,22,0.50) 0%, rgba(38,30,22,0.18) 55%, rgba(38,30,22,0.04) 100%), linear-gradient(180deg, rgba(38,30,22,0.06) 0%, rgba(38,30,22,0.22) 45%, rgba(38,30,22,0.86) 100%); }
 .hero .wrap { padding-block: var(--space-8) var(--space-7); width: 100%; }
 .hero__inner { max-width: 44rem; display: flex; flex-direction: column; gap: var(--space-4); }
@@ -266,6 +263,61 @@ button { font: inherit; }
     border-radius: 50%;
   }
   .hero__toggle-label { display: none; }
+}
+
+/* Career timeline (About). A sage rule running dot to dot, a red dot per entry.
+   Mobile: one left rail. >= 900px: the rule runs down the centre and entries
+   alternate sides. CSS only, no JS. --tl-ground is the section background the
+   dots are punched out of; override it if the block moves to another ground. */
+.timeline {
+  --tl-ground: var(--paper);
+  --tl-dot: 13px;
+  --tl-rail: 8px;
+  list-style: none; margin: 0; padding: 0;
+}
+.timeline__item {
+  position: relative;
+  padding-left: calc(var(--tl-rail) + var(--space-5));
+  padding-bottom: var(--space-6);
+}
+.timeline__item:last-child { padding-bottom: 0; }
+/* The dot. */
+.timeline__item::before {
+  content: ""; position: absolute; top: 0.4rem; z-index: 1;
+  left: calc(var(--tl-rail) - var(--tl-dot) / 2);
+  width: var(--tl-dot); height: var(--tl-dot); border-radius: 50%;
+  background: var(--red); box-shadow: 0 0 0 4px var(--tl-ground);
+}
+/* The rule, one segment per entry, so it starts at the first dot and stops at
+   the last one instead of running off the end of the list. */
+.timeline__item::after {
+  content: ""; position: absolute; width: 2px; background: var(--sage); z-index: 0;
+  top: 0.4rem; bottom: -0.4rem;
+  left: calc(var(--tl-rail) - 1px);
+}
+.timeline__item:last-child::after { content: none; }
+/* The undated band reads as open, so its dot is hollow. */
+.timeline__item--open::before { background: var(--tl-ground); border: 2px solid var(--sage); }
+.timeline__years {
+  font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.1;
+  color: var(--red); font-variant-numeric: tabular-nums;
+}
+.timeline__title { font-size: var(--text-md); font-family: var(--font-body); font-weight: 700; color: var(--ink); margin-top: var(--space-2); }
+.timeline__detail { font-size: var(--text-sm); color: var(--ink-soft); margin-top: var(--space-2); max-width: 46ch; }
+
+@media (min-width: 900px) {
+  .timeline__item {
+    width: 50%; padding-left: 0; padding-right: var(--space-7);
+    text-align: right; padding-bottom: var(--space-6);
+  }
+  .timeline__item::before { left: auto; right: calc(var(--tl-dot) / -2); }
+  .timeline__item::after { left: auto; right: -1px; }
+  .timeline__item:nth-child(even) {
+    margin-left: 50%; padding-right: 0; padding-left: var(--space-7); text-align: left;
+  }
+  .timeline__item:nth-child(even)::before { right: auto; left: calc(var(--tl-dot) / -2); }
+  .timeline__item:nth-child(even)::after { right: auto; left: -1px; }
+  .timeline__detail { max-width: none; }
 }
 
 /* Service cards */
