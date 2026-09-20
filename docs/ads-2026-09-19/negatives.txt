@@ -1,0 +1,157 @@
+# Account-level shared negative keyword list. Apply on day one, before the first impression.
+# Format: one per line, Google Ads Editor accepts this as a shared list paste.
+# Match type: broad negatives unless bracketed.
+
+# --- CANNOT SERVE. Matt forages mushrooms, berries, greens and salt only.
+# He does not hunt, fish or butcher. Meat and fish are bought.
+# "mendocino sea urchin foraging" is the single strongest foraging autocomplete
+# in the county and he cannot fulfil it. This block is the most important here.
+sea urchin
+urchin
+uni
+abalone
+mussels
+mussel
+clamming
+clam
+seaweed
+kelp
+fishing
+fish
+crab
+crabbing
+hunting license
+deer
+elk
+game
+butcher
+whole animal
+
+# --- JOB SEEKERS
+job
+jobs
+hiring
+hire me
+career
+careers
+salary
+wage
+resume
+cv
+apply
+application
+employment
+internship
+intern
+staffing
+recruiter
+
+# --- DIY AND FREE INFORMATION
+recipe
+recipes
+how to
+diy
+free
+identification
+identify
+identifier
+app
+apps
+chart
+poster
+field guide
+pdf
+download
+book
+books
+ebook
+youtube
+reddit
+wikipedia
+what is
+benefits of
+
+# --- STUDENTS AND CERTIFICATION
+culinary school
+culinary institute
+culinary degree
+certification
+certificate
+diploma
+course online
+online course
+online class
+degree
+scholarship
+tuition
+student
+apprenticeship
+
+# --- RESTAURANTS, NOT PRIVATE SERVICE
+restaurant
+restaurants
+cafe menu
+takeout
+take out
+delivery
+doordash
+ubereats
+grubhub
+opentable
+reservation
+reservations
+brunch
+happy hour
+food truck
+bakery
+coffee
+
+# --- HOBBYISTS WHO WILL NOT PAY
+free foraging
+foraging spots
+foraging map
+where to forage
+public land
+national forest
+state park free
+permit
+permits
+club
+meetup
+society
+association
+volunteer
+donation
+
+# --- WRONG GEOGRAPHY AND WRONG BUSINESS
+mendocino farms
+mendocino farms menu
+mendocino grove
+mendocino county jobs
+real estate
+rentals
+vacation rental
+airbnb host
+hotel
+motel
+campground
+camping
+dispensary
+cannabis
+wine tasting
+brewery
+
+# --- PRICE SHOPPERS AND UNQUALIFIED
+cheap
+cheapest
+budget
+discount
+coupon
+groupon
+deal
+deals
+under 50
+under 100
+salary of a chef
+how to become
+become a chef

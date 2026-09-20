@@ -1,0 +1,32 @@
+Campaign,Ad Group,Keyword,Match Type,Final URL,Evidence
+Bay Area Planning,Mushroom Foraging,mendocino mushroom foraging,Exact,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,mendocino mushroom foraging,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,mushroom foraging mendocino county,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,mushroom hunting mendocino,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,mushroom foraging tour mendocino,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,mendocino mushroom hunting,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,coastal foraging mendocino,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,foraging class california,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+Bay Area Planning,Mushroom Foraging,guided mushroom foraging california,Phrase,https://spontaneouscafe.com/foraging/,variant of confirmed cluster
+Bay Area Planning,Mushroom Foraging,mushroom foraging tour california coast,Phrase,https://spontaneouscafe.com/foraging/,variant of confirmed cluster
+Bay Area Planning,Forage and Dinner,forage to table mendocino,Phrase,https://spontaneouscafe.com/foraging/,differentiator; low volume expected
+Bay Area Planning,Forage and Dinner,foraging and dinner mendocino,Phrase,https://spontaneouscafe.com/foraging/,differentiator; low volume expected
+Bay Area Planning,Forage and Dinner,mushroom foraging and dinner,Phrase,https://spontaneouscafe.com/foraging/,differentiator; low volume expected
+Bay Area Planning,Forage and Dinner,forage to table experience california,Phrase,https://spontaneouscafe.com/foraging/,differentiator; low volume expected
+Bay Area Planning,Private Chef and Retreats,private chef mendocino county,Exact,https://spontaneouscafe.com/private-chef/,autocomplete confirmed
+Bay Area Planning,Private Chef and Retreats,private chef mendocino,Phrase,https://spontaneouscafe.com/private-chef/,autocomplete confirmed
+Bay Area Planning,Private Chef and Retreats,private chef fort bragg ca,Phrase,https://spontaneouscafe.com/private-chef/,autocomplete confirmed
+Bay Area Planning,Private Chef and Retreats,private chef sea ranch ca,Phrase,https://spontaneouscafe.com/private-chef/,autocomplete confirmed
+Bay Area Planning,Private Chef and Retreats,private chef cost per day,Phrase,https://spontaneouscafe.com/private-chef/,autocomplete confirmed
+Bay Area Planning,Private Chef and Retreats,mendocino retreat catering,Phrase,https://spontaneouscafe.com/catering/,retreat cluster confirmed
+Bay Area Planning,Private Chef and Retreats,mendocino yoga retreat catering,Phrase,https://spontaneouscafe.com/catering/,retreat cluster confirmed
+Bay Area Planning,Private Chef and Retreats,retreat catering california coast,Phrase,https://spontaneouscafe.com/catering/,retreat cluster confirmed
+Bay Area Planning,Private Chef and Retreats,mendocino wedding catering,Phrase,https://spontaneouscafe.com/catering/,autocomplete confirmed
+Bay Area Planning,Private Chef and Retreats,mendocino county catering,Phrase,https://spontaneouscafe.com/catering/,autocomplete confirmed
+In Mendocino Now,In Market,mushroom foraging courses near me,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+In Mendocino Now,In Market,wild food foraging classes near me,Phrase,https://spontaneouscafe.com/foraging/,autocomplete confirmed
+In Mendocino Now,In Market,private chef at home near me,Phrase,https://spontaneouscafe.com/private-chef/,autocomplete confirmed
+In Mendocino Now,In Market,personal chef near me,Phrase,https://spontaneouscafe.com/private-chef/,synonym Matt's copy never uses
+In Mendocino Now,In Market,mendocino cooking class,Phrase,https://spontaneouscafe.com/cooking-classes/,autocomplete confirmed
+In Mendocino Now,In Market,cooking class mendocino,Phrase,https://spontaneouscafe.com/cooking-classes/,autocomplete confirmed
+In Mendocino Now,In Market,foraging tour near me,Phrase,https://spontaneouscafe.com/foraging/,variant of confirmed cluster
