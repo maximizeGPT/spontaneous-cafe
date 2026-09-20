@@ -83,7 +83,7 @@ SEO beyond page basics, Google Business Profile, review link, contact form backe
 Live. Reports per page in docs/revision-2026-09-09/ (REPORT.md compiled). Home carries one price line; About is the career story; Private Chef has the Albion option and the 1 to 12 range; all service pages link to /#build. Open for Matt: 44 CONFIRM tags, questionnaire section 8 (story facts, Albion wording, group range).
 
 ## Resume facts (2026-09-11)
-Matt's resume arrived as docs/source/matt-resume.txt. These are confirmed fact and beat any earlier guess. The dated roles:
+Matt's resume arrived as the private folder next to the repo (Spontaneous Cafe-private/source/matt-resume.txt). These are confirmed fact and beat any earlier guess. The dated roles:
 - Living Light Culinary Arts Institute, Fort Bragg, CA. Head chef and culinary instructor. 2000 to 2004, 2008 to 2009, 2017 to 2019. Kitchen fed 20 to 40 students and guests, two or three meals daily. Trained students and interns, developed curriculum. This is the "culinary school in Fort Bragg" from the 2026-09-09 brief.
 - Film Transsiberian. Personal chef. 2006 to 2007. Cooked for Woody Harrelson, Sir Ben Kingsley and Emily Mortimer. Only the film and Woody Harrelson are on the site, under a CONFIRM for permission to name the cast publicly.
 - High Integrity Foods. Co-founder. 2006 to present. Organic cold-pressed chocolate line.
