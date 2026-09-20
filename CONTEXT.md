@@ -99,3 +99,30 @@ Matt's resume arrived as the private folder next to the repo (Spontaneous Cafe-p
 ## Matt's photos (2026-09-16)
 - Twenty files arrived via Sidd in the Drive "Photos" folder (17 iPhone screenshots of photos at 828 px wide, two HEIC originals, one 2048 px JPEG). Raw in docs/source/photos-raw, cropped in docs/source/photos-cropped. Eleven role images are now real (foraging card, chef card, catering card, forest, mushroom basket, porcini log, plate, table, group cooking, pan). Only two photos show Matt himself; three other men appear in the batch and are held back; two photos of a child are held back; the rockfish photo is held back because the copy says fish is bought.
 - Still stock: classes card, shore and salt, market, farm, berries, coast, knife, and the five hero posters (screenshots are too small for heroes).
+
+## About copy correction (2026-09-19)
+
+Sidd clarified that Matt started in Los Angeles, moved north along the coast, arrived in Mendocino over twenty-five years ago, and has never left. This supersedes the earlier 2009 arrival claim for the About page. The 2009 business founding date remains separate. The Mendocino section now emphasizes community, the mild coastal climate, and changing harvests throughout the year.
+
+## Cooking classes correction (2026-09-19)
+
+Sidd confirmed that Matt does not sharpen knives. Do not offer or promise knife sharpening in class descriptions, inclusions, or FAQs.
+
+## Teaching copy correction (2026-09-19)
+
+Use the resume to ground teaching claims: separate Living Light instructor periods (2000–2004, 2008–2009, 2017–2019), student and intern training, international workshops and culinary intensives. Do not claim twenty-three continuous years at Living Light and Esalen. Esalen is not in the supplied resume; omit it from marketing copy unless independently confirmed again.
+
+
+### Site consistency review (September 2026)
+- Keep the existing visual direction. Section headings now omit trailing periods; stacked paragraphs use a single consistent gap. Contact has an active navigation state.
+- Menus and class plans are agreed in advance, then adapted to seasonal availability. Do not reintroduce “no menu written” claims.
+- Removed unapproved testimonials, invented personal quotes, the unverified free community weekend, and the unsupported thirty-year foraging duration. Resume confirms catering experience for 20–350 guests, and retreat menus for 20–80.
+- Do not promise specific tasting terms, gift certificates, deposits, response deadlines, unlimited class sizes or supplied equipment without confirmation. Discuss those details before booking.
+- Seasonal food examples are illustrative; fish and shellfish are sourced from fishmongers. Removed fixed crab-season dates and casual harvesting instructions.
+- Verified nine pages at 1440px and 390px with no horizontal overflow, internal links/assets/fragments, image alt attributes, headings and form labels. Mobile navigation/Escape, seasonal tabs/arrow keys, FAQ expansion and service/tier prefills worked. No inquiry was submitted.
+
+
+### Home photographs and testimonial preview
+- User requested Good 1–11 except Good 7 from the Photos Drive folder. All ten are now included exactly once across home service cards (3, 1, 10, 9), the sourcing gallery (11, 2, 4, 6, 8), and the About teaser (5). Good 7 is now reserved for the About page.
+- Each has an AI-assisted photographic edit and responsive JPEG/WebP exports; original Drive files are unchanged. Source mapping: docs/HOME-IMAGE-SOURCES.md.
+- Three invented testimonial examples appear in the home design, each labeled Sample testimonial with a section-level disclosure. No invented customer names, ratings or review schema. Replace with authorized real quotes for genuine testimonials.

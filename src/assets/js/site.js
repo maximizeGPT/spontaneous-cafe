@@ -413,7 +413,7 @@
             keepalive: true
           }).catch(noop);
           form.reset();
-          setStatus('Sent. Matt will get back to you within a day or two.', false);
+          setStatus('Sent. Thank you for your inquiry. Matt will get back to you to discuss the details.', false);
         })
         .catch(function () {
           setStatus(
