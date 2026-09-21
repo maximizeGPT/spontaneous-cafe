@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Assemble the static site from src/ into dist/. Standard library only (Pillow
-optional, used to read poster dimensions for og:image:width/height).
+"""Assemble the static site from src/ into dist/.
+Pillow is required for responsive images and social image dimensions.
 
 Page files live in src/pages/<slug>.html. Each starts with a JSON block inside an
 HTML comment, then the page body:
@@ -16,11 +16,24 @@ index.html builds to dist/index.html; 404.html builds to dist/404.html (Vercel
 serves it for unknown paths); every other slug builds to dist/<slug>/index.html.
 """
 import json, os, re, shutil, sys, datetime, hashlib, html as _html, subprocess
+from urllib.parse import urlsplit
+from PIL import Image
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, 'src')
 DIST = os.path.join(ROOT, 'dist')
-SITE = 'https://spontaneouscafe.com'
+SITE = os.environ.get('SITE_URL', 'https://spontaneouscafe.com').rstrip('/')
+_origin = urlsplit(SITE)
+if (_origin.scheme != 'https' or not _origin.hostname or _origin.path or
+        _origin.query or _origin.fragment or _origin.username or _origin.port):
+    raise ValueError('SITE_URL must be an HTTPS origin without a path, port or credentials')
+PREVIEW = os.environ.get('VERCEL_ENV', 'production') != 'production' or os.environ.get('REVIEW') == '1'
+GTM_ID = os.environ.get('GTM_ID', '').strip()
+if GTM_ID and not re.fullmatch(r'GTM-[A-Z0-9]{5,}', GTM_ID):
+    raise ValueError('GTM_ID must be a real GTM container ID, or unset')
+GA4_ID = os.environ.get('GA4_ID', '').strip()
+if GA4_ID and not re.fullmatch(r'G-[A-Z0-9]+', GA4_ID):
+    raise ValueError('GA4_ID must be a GA4 measurement ID, or unset')
 PHONE = '+1-707-972-6647'
 EMAIL = 'chefmattsamuelson@gmail.com'
 DEFAULT_OG_ALT = 'The Spontaneous Cafe, Mendocino'
@@ -74,6 +87,7 @@ def jsonld(meta, slug):
             "serviceType": meta['service'],
             "provider": {
                 "@type": "LocalBusiness",
+                "@id": SITE + '/#business',
                 "name": "The Spontaneous Cafe",
                 "url": SITE + "/",
                 "telephone": PHONE,
@@ -88,20 +102,21 @@ def jsonld(meta, slug):
         base = {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
+            "@id": SITE + '/#business',
             "name": "The Spontaneous Cafe",
             "alternateName": "Chef Matt Samuelson",
             "url": SITE + "/",
             "image": SITE + "/assets/img/home-poster.jpg",
             "telephone": PHONE,
             "email": EMAIL,
-            "founder": {"@type": "Person", "name": "Matthew Samuelson"},
+            "founder": {"@type": "Person", "@id": SITE + '/about/#matt', "name": "Matthew Samuelson", "url": SITE + '/about/'},
             "foundingDate": "2009",
             "areaServed": {"@type": "Place", "name": "Mendocino County, California"},
             "address": {"@type": "PostalAddress", "addressLocality": "Mendocino", "addressRegion": "CA", "addressCountry": "US"},
-            "geo": {"@type": "GeoCoordinates", "latitude": 39.3077, "longitude": -123.7995},
             "priceRange": "$$$",
             "makesOffer": offers(),
             "sameAs": ["https://www.google.com/maps?cid=7343978535458024901"],
+            "hasMap": "https://www.google.com/maps?cid=7343978535458024901",
         }
     return json.dumps(base, indent=0)
 
@@ -161,29 +176,8 @@ def responsive_images(body):
                 f'<img{attrs} src="/assets/img/{name}.jpg" srcset="{jpg}" sizes="{sizes}"></picture>')
     return IMG_RE.sub(repl, body)
 
-def faq_jsonld(body):
-    """FAQPage schema from every <details> block, keeping all answer paragraphs."""
-    blocks = re.findall(r'<details[^>]*>\s*<summary>(.*?)</summary>(.*?)</details>', body, re.S)
-    def clean(t):
-        return _html.unescape(re.sub(r'<[^>]+>', '', t)).strip()
-    items = []
-    for q, answer in blocks:
-        paras = [clean(x) for x in re.findall(r'<p\b[^>]*>(.*?)</p>', answer, re.S)]
-        paras = [x for x in paras if x]
-        if not paras:
-            continue
-        items.append({"@type": "Question", "name": clean(q),
-                      "acceptedAnswer": {"@type": "Answer", "text": ' '.join(paras)}})
-    if not items:
-        return ''
-    return ('<script type="application/ld+json">'
-            + json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": items})
-            + '</script>')
-
-
 def image_size(path):
     try:
-        from PIL import Image
         with Image.open(path) as im:
             return im.size
     except Exception:
@@ -218,18 +212,18 @@ def head_meta(meta, og_image):
         f'<meta name="twitter:title" content="{esc(meta["title"])}">',
         f'<meta name="twitter:description" content="{esc(meta["description"])}">',
     ]
-    if meta.get('noindex'):
+    if meta.get('noindex') or PREVIEW:
         tags.append('<meta name="robots" content="noindex, follow">')
     return '\n'.join(tags)
 
 
 def hash_assets():
-    """Rename the three build-output assets in dist to include a content hash.
+    """Rename build-output CSS and JavaScript assets to include a content hash.
 
     Returns {original href: hashed href} for rewriting the layout.
     """
     mapping = {}
-    for rel in ('css/site.css', 'css/fonts.css', 'js/site.js'):
+    for rel in ('css/site.css', 'css/fonts.css', 'js/site.js', 'js/analytics.js'):
         full = os.path.join(DIST, 'assets', rel)
         if not os.path.isfile(full):
             continue
@@ -253,6 +247,10 @@ def build():
     assets = hash_assets()
 
     layout = read(os.path.join(SRC, 'layout.html'))
+    layout = layout.replace('{{site_url}}', _html.escape(SITE, quote=True))
+    layout = layout.replace('{{gtm_id}}', GTM_ID if not PREVIEW else '')
+    layout = layout.replace('{{ga4_id}}', GA4_ID if not PREVIEW else '')
+    layout = layout.replace('{{analytics_host}}', _html.escape(_origin.hostname, quote=True))
     for old, new in assets.items():
         layout = layout.replace(old, new)
 
@@ -281,7 +279,7 @@ def build():
         html = html.replace('{{og_image}}', og_image)
         html = html.replace('{{jsonld}}', jsonld(meta, slug))
         html = re.sub(r'\{\{active:([a-z-]+)\}\}', lambda mm: 'aria-current="page"' if mm.group(1) == slug else '', html)
-        html = html.replace('{{content}}', responsive_images(body) + faq_jsonld(body))
+        html = html.replace('{{content}}', responsive_images(body))
         if meta.get('noindex'):
             html = re.sub(r'\n<link rel="canonical"[^>]*>', '', html, count=1)
         html = CONFIRM_RE.sub('', html)
@@ -296,7 +294,7 @@ def build():
             out_path = os.path.join(out_dir, 'index.html')
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(html)
-        if slug != '404' and not meta.get('noindex'):
+        if slug != '404' and not meta.get('noindex') and not PREVIEW:
             urls.append((f'{SITE}/{canonical}', git_lastmod(src_path, today)))
         print(f'  {slug:20s} -> {os.path.relpath(out_path, ROOT)}')
 

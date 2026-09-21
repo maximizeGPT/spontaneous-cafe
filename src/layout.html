@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
-<link rel="canonical" href="https://spontaneouscafe.com/{{canonical}}">
+<link rel="canonical" href="{{site_url}}/{{canonical}}">
 <meta property="og:site_name" content="The Spontaneous Cafe">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://spontaneouscafe.com/{{canonical}}">
-<meta property="og:image" content="https://spontaneouscafe.com/assets/img/{{og_image}}">
+<meta property="og:url" content="{{site_url}}/{{canonical}}">
+<meta property="og:image" content="{{site_url}}/assets/img/{{og_image}}">
 {{head_meta}}
 <meta name="theme-color" content="#F1E9DA">
 <link rel="icon" href="/assets/logo/favicon.svg" type="image/svg+xml">
@@ -75,10 +75,19 @@
     </div>
     <div class="legal">
       <span>&copy; <span data-year>2026</span> The Spontaneous Cafe. Matthew Samuelson.</span>
-      <span><a href="/privacy/">Privacy</a></span>
+      <span><a href="/privacy/">Privacy</a> <button type="button" class="privacy-settings" data-privacy-settings hidden>Cookie preferences</button></span>
     </div>
   </div>
 </footer>
+<aside class="cookie-notice" data-cookie-notice aria-labelledby="cookie-title" hidden>
+  <h2 id="cookie-title">A small note on cookies</h2>
+  <p>With your permission, we use Google Analytics to understand which pages help visitors plan a day with Matt. Your inquiry details stay out of Analytics. <a href="/privacy/">Read our privacy policy</a>.</p>
+  <div class="cookie-actions">
+    <button class="btn" type="button" data-consent="granted">Accept analytics</button>
+    <button class="btn btn--outline" type="button" data-consent="denied">Reject analytics</button>
+  </div>
+</aside>
+<script src="/assets/js/analytics.js" data-gtm-id="{{gtm_id}}" data-ga4-id="{{ga4_id}}" data-analytics-host="{{analytics_host}}" defer></script>
 <script src="/assets/js/site.js" defer></script>
 </body>
 </html>

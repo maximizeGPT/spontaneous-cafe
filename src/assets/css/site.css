@@ -615,3 +615,11 @@ picture.ph { display: block; position: relative; }
   .harvest-gallery--extras { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
   .harvest-gallery--extras figure, .harvest-gallery--extras figure:last-child { grid-column: auto; aspect-ratio: 3 / 4; }
 }
+/* Analytics choices are hidden entirely until a production account is configured. */
+[hidden] { display: none !important; }
+.privacy-settings { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin-left: 1rem; text-decoration: underline; cursor: pointer; }
+.cookie-notice { position: fixed; bottom: 1rem; right: 1rem; z-index: 100; width: min(30rem, calc(100% - 2rem)); max-height: calc(100dvh - 2rem); overflow: auto; padding: 1.5rem; background: #faf6ee; color: #29271f; border: 1px solid #d8cdb7; border-radius: 6px; box-shadow: 0 8px 32px #29271f24; }
+.cookie-notice h2 { font-size: 1.5rem; margin: 0 0 .65rem; }
+.cookie-notice p { font-size: 1rem; line-height: 1.5; }
+.cookie-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1rem; }
+.cookie-actions .btn { flex: 1 1 11rem; justify-content: center; padding: .7rem 1rem; }

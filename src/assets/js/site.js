@@ -380,7 +380,13 @@
       else status.textContent = text;
     }
 
+    var submitting = false;
+    function trackInquiry(event, details) {
+      try { if (window.cafeAnalytics) window.cafeAnalytics.track(event, details); }
+      catch (error) { /* Measurement must never affect an inquiry. */ }
+    }
     form.addEventListener('submit', function (e) {
+      if (submitting) { e.preventDefault(); return; }
       if (subject) {
         var nameEl = form.querySelector('[name="name"]');
         var who = (nameEl && nameEl.value && nameEl.value.trim()) || 'a website visitor';
@@ -393,19 +399,23 @@
 
       if (!window.fetch || !form.action) return;
       e.preventDefault();
+      submitting = true;
+      var submitted = new FormData(form);
+      var lead = { service: submitted.get('service'), tier: submitted.get('tier') };
       setStatus('Sending…', false);
       if (button) button.disabled = true;
 
       fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: submitted,
         headers: { 'Accept': 'application/json' }
       })
         .then(function (r) { return r.ok ? r.json() : r.json().then(function (j) { throw j; }); })
         .then(function () {
+          trackInquiry('generate_lead', lead);
           // Instant notification to Matt, fire and forget. Formspree already has the record.
           var payload = {};
-          new FormData(form).forEach(function (v, k) { payload[k] = v; });
+          submitted.forEach(function (v, k) { payload[k] = v; });
           fetch('/api/notify/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -416,13 +426,14 @@
           setStatus('Sent. Thank you for your inquiry. Matt will get back to you to discuss the details.', false);
         })
         .catch(function () {
+          trackInquiry('inquiry_error');
           setStatus(
             'That did not send. Email chefmattsamuelson@gmail.com or call <a href="tel:+17079726647">(707) 972-6647</a>.',
             true,
             true
           );
         })
-        .then(function () { if (button) button.disabled = false; });
+        .then(function () { submitting = false; if (button) button.disabled = false; });
     });
   });
 
