@@ -107,4 +107,6 @@ Google Ads is a separate optional activation. Confirm a spending cap and service
 
 Production now installs pinned Pillow and fails if it is missing, so responsive image generation cannot silently disappear. CSS/JS are content-hashed; stable image filenames use one-day revalidation instead of a one-year immutable policy. Photos and page layout remain intact.
 
+Vercel runs the build in an isolated `uv` Python 3.12 environment with `requirements.txt`. The inherited `PYTHONPATH` is removed for this command because Vercel’s automatic dependency directory can contain native extensions built for a different Python version. Do not replace this with a system `pip install` or a bare `python3` build on Vercel.
+
 Still to verify with account/domain access: production-domain migration, Search Console ownership/indexing, published GA4/GTM settings, real lead delivery and production PageSpeed/Core Web Vitals. There is no field-performance score until it has been measured. The existing labeled sample testimonials remain unchanged and have no review schema.

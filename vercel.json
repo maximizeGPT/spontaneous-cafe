@@ -1,5 +1,5 @@
 {
-  "buildCommand": "python3 build.py",
+  "buildCommand": "env -u PYTHONPATH uv run --no-project --python 3.12 --with-requirements requirements.txt python build.py",
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": true,
