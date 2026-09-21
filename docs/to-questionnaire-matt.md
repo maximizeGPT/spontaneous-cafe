@@ -276,6 +276,82 @@ _On the page: private dinners run from one person (solo diners welcome) up to tw
 
 >
 
+## 9. Search and listings
+
+Questions from the SEO round that ran 2026-09-19. Full detail and sources are in `docs/seo-2026-09-19/`; the short version of each is here.
+
+### For a month-by-month mushroom season page, which species do you take guests to, in which months, and on what kind of ground?
+
+_This is the single best link magnet the research found: six outside articles already rank for "mushroom foraging mendocino" and none of them is a real service page. A calendar built from what you actually do beats anything I could write from public sources. Also tell me whether you are comfortable being that specific in public._
+
+>
+
+### Do you hold a Jackson Demonstration State Forest mushroom permit, which land do you actually use, and do guests need their own permit on your days?
+
+_The research found the public permit rules (a JDSF permit is $20 a year, no digging allowed) but nothing about your own arrangement. This whole section of the site is blocked on you; I will not guess at it._
+
+>
+
+### May any farm stand be named on the site, or do they all stay unnamed?
+
+_CONTEXT.md already notes the stands are small, unstaffed and trust-based. Naming one in a place search engines read could bring more people than the honesty box was built for._
+
+>
+
+### Do you want a typical price range published for a fifty-guest wedding?
+
+_The catering page currently answers this FAQ with no number. "Average cost to cater a wedding" and "how much to cater a wedding for 50 people" are both real searches. A range would answer them; "quoted" alone will not._
+
+>
+
+### What hours do you actually answer the phone?
+
+_The Google Business Profile currently publishes 8 AM to 11 PM, seven days, which nobody chose. The fix needs your real answer, for the profile and for the site's own structured data._
+
+>
+
+### Esalen's faculty page says "High Vitality Foods." Your resume says "High Integrity Foods." Which is right?
+
+_The research found this contradiction between the two sources. It is the name of your own company, so it is worth getting right before it goes into the site's structured data and the Google profile description._
+
+>
+
+### Are the LinkedIn, Facebook and Instagram accounts the research found yours, and may the site link to them?
+
+_The research found a LinkedIn profile, a Facebook profile that is not yet a Page, and an Instagram account, all under your name, none confirmed as belonging to you. Nothing gets linked from the site until you say yes._
+
+>
+
+### The Alignable listing mentions a food truck. Is that real, and may we fix the listing name to "The Spontaneous Cafe"?
+
+_The Alignable page still reads "Spontaneous Cafe" without "The," and lists a food truck alongside catering and private chef work. Nothing in your resume or in CONTEXT.md mentions one._
+
+>
+
+### For the Google profile's hidden address, Mendocino or Albion?
+
+_A service-area profile hides the street address but still needs a town on file. CONTEXT.md has both your business base in Mendocino and your home kitchen in Albion; tell me which one the profile should use._
+
+>
+
+### Would you sell the foraging day or a class as a fixed public product, Airbnb Experiences at a 20 percent fee or Eventbrite for classes, or keep everything by inquiry?
+
+_Airbnb Experiences turned out to be the strongest audience match of any marketplace the research looked at, and the fee and the loss of control that come with a fixed listing are real costs. This is a business decision, not an SEO one._
+
+>
+
+### For retreat catering, do you want retreat centers approached as a channel, and is "twenty to eighty guests" the right range?
+
+_Your resume already supports retreat menus for 20 to 80 guests, and the research found five retreat venues on this coast that book a caterer every season. Nothing on the page needs to change, only whether outreach to those venues starts._
+
+>
+
+### Do you want to be associated with the Mendocino Coast Mushroom Club and the autumn festival window on the site?
+
+_The club meets monthly from September to May in Fort Bragg and is a genuine partner rather than a competitor. The festival window is a seasonal page candidate that only makes sense if you want the association public._
+
+>
+
 ## Anything else?
 
 ### Is there anything on the site you would never say, or anything you always say to a guest that is missing?
