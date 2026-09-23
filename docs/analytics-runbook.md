@@ -4,7 +4,7 @@ The official domain is `https://spontaneouscafe.com`. The owner confirmed the ex
 
 ## Direct GA4 setup
 
-The site uses the Google tag (`gtag.js`) directly. No GTM container, JSON import, or GTM publication is required. The previously prepared `gtm-production.json` is obsolete and must not be used for this setup.
+The site uses the Google tag (`gtag.js`) directly. No GTM container, JSON import, or GTM publication is required. The obsolete GTM import JSON has been removed from the project. The unused GTM container is not part of this integration and should remain unpublished.
 
 - Google account: `siddh991@gmail.com`.
 - Stream: `Spontaneous Cafe Website`, ID `15834223460`.
@@ -27,8 +27,8 @@ All events include sanitized page location, referrer, title and path. Contact de
 
 ## Before publishing the website
 
-1. In GA4's web stream, turn **Enhanced measurement off**. It was on at the last account inspection. This prevents automatic form/outbound/history events from bypassing the site's explicit event and URL controls.
-2. Mark `generate_lead` as a key event. Optional reporting dimensions: `lead_service` and `lead_tier`.
+1. **Completed September 23, 2026:** Enhanced measurement is off in the GA4 web stream. This prevents automatic form/outbound/history events from bypassing the site's explicit event and URL controls.
+2. **Completed September 23, 2026:** `generate_lead` is registered as a key event using the existing website code, counted once per event, with no default monetary value. GA4 confirmed creation; no stream data has been received yet. Optional reporting dimensions: `lead_service` and `lead_tier`.
 3. Keep user-provided data collection, Google Signals and advertising personalization off; use two-month event retention initially.
 4. Deploy the updated site with `SITE_URL=https://spontaneouscafe.com`. The GA4 ID defaults to `G-VCT34ZQC92`; confirm an existing Vercel override does not blank or replace it.
 5. Once the custom domain serves this deployment, accept analytics and verify a page view in GA4 Realtime.
