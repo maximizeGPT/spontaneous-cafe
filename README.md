@@ -115,3 +115,5 @@ With no variables set the function returns "skipped" and the form still works th
 ## Launch
 
 `docs/LAUNCH-CHECKLIST.md` is the DNS cutover, verification and rollback procedure. `docs/to-questionnaire-matt.md` is the list of client facts still to confirm.
+
+`docs/seo-2026-09-19/SEO-PLAN.md` is the SEO round's plan, and `docs/seo-2026-09-19/OFFSITE-CHECKLIST.md` is the off-site checklist that goes with it.

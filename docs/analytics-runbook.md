@@ -77,7 +77,7 @@ Google Ads is a separate optional activation. Confirm a spending cap and service
 
 ## Performance and remaining owner-dependent work
 
-Production now installs pinned Pillow and fails if it is missing, so responsive image generation cannot silently disappear. CSS/JS are content-hashed; stable image filenames use one-day revalidation instead of a one-year immutable policy. Photos and page layout remain intact.
+Production installs pinned Pillow; if it is ever missing, build.py reads image sizes with its own header parser and the output is identical. CSS/JS are content-hashed; stable image filenames use one-day revalidation instead of a one-year immutable policy. Photos and page layout remain intact.
 
 Vercel runs the build in an isolated `uv` Python 3.12 environment with `requirements.txt`. The inherited `PYTHONPATH` is removed for this command because Vercel’s automatic dependency directory can contain native extensions built for a different Python version. Do not replace this with a system `pip install` or a bare `python3` build on Vercel.
 
