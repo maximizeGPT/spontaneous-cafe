@@ -2,66 +2,38 @@
 
 The official domain is `https://spontaneouscafe.com`. The owner confirmed the existing Google Business Profile is already set up. Reuse it; do not create a duplicate.
 
-## Activation status
+## Direct GA4 setup
 
-The site integration is implemented, but tracking is off until **both** `GTM_ID` and `GA4_ID` are configured in the Vercel Production environment and the GTM container below is published. IDs are public identifiers, not passwords. The owner is creating the accounts and will provide the IDs.
+The site uses the Google tag (`gtag.js`) directly. No GTM container, JSON import, or GTM publication is required. The previously prepared `gtm-production.json` is obsolete and must not be used for this setup.
 
-Do not copy `docs/ads-2026-09-19/tracking-spec.md`: it predates this implementation. No contact details or user-provided-data features should be added to the data layer.
+- Google account: `siddh991@gmail.com`.
+- Stream: `Spontaneous Cafe Website`, ID `15834223460`.
+- Measurement ID: `G-VCT34ZQC92` (already the build default).
+- Production origin: `https://spontaneouscafe.com`.
+- Demo: `https://spontaneous-cafe.vercel.app/`, never tracked.
 
-## 1. Owner account setup
+Production builds include the measurement ID only when `SITE_URL` uses the exact production hostname. Preview/review builds suppress it. Runtime additionally requires HTTPS and the configured hostname. An explicit empty `GA4_ID` disables tracking; a valid `GA4_ID` overrides the default. `GTM_ID` is no longer used.
 
-1. Create an owner-controlled Google Analytics account/property for The Spontaneous Cafe. Use Los Angeles reporting time and USD. Create a Web data stream for `https://spontaneouscafe.com`; record its Measurement ID (`G-…`).
-2. In the stream, turn **Enhanced measurement off** for the initial setup. The Google tag supplies the standard page view; our code supplies the explicit inquiry and contact events. This prevents generic form-submit events, automatic outbound URLs and history changes from bypassing our event/URL controls.
-3. Turn off user-provided data collection, Google Signals and advertising personalization. Use two-month event-data retention initially. Do not enable enhanced conversions or remarketing.
-4. Create an owner-controlled Google Tag Manager account and Web container; record its Container ID (`GTM-…`). Do not also paste a Google tag snippet into the HTML.
+The tag loads only after analytics consent. It sends one page view and the explicit events below, with sanitized page paths and referrer origins. Ads consent stays denied and Google Signals/ad personalization are disabled in the configuration. Cookie preferences and withdrawal remain available.
 
-## 2. GTM configuration — required before enabling the IDs
-
-Create Version 2 Data Layer Variables with the following names/keys:
-
-| GTM variable name | Data layer variable name |
-|---|---|
-| DLV – page location | `analytics_page_location` |
-| DLV – page referrer | `analytics_page_referrer` |
-| DLV – page title | `analytics_page_title` |
-| DLV – service | `lead_service` |
-| DLV – tier | `lead_tier` |
-| DLV – page path | `page_path` |
-| DLV – error | `error_category` |
-
-Create one **Google tag**, Tag ID equal to the GA4 Measurement ID. Trigger: Custom Event named `analytics_ready`, not All Pages. Set these configuration parameters:
-
-| Parameter | Value |
-|---|---|
-| `page_location` | `{{DLV – page location}}` |
-| `page_referrer` | `{{DLV – page referrer}}` |
-| `page_title` | `{{DLV – page title}}` |
-| `allow_google_signals` | `false` (boolean) |
-| `allow_ad_personalization_signals` | `false` (boolean) |
-| `send_page_view` | `true` (boolean) |
-
-Require additional consent `analytics_storage` for all Analytics tags. The site provides default-denied consent and grants only analytics after acceptance. Never add another consent initializer that overrides this choice.
-
-Create a **GA4 Event tag** for each row below using the same Measurement ID and a Custom Event trigger with the exact event name. Add `page_location`, `page_referrer` and `page_title` to each event tag from the same DLVs as the Google tag. This makes the sanitized values explicit on every event.
-
-| Event/tag/trigger name | Additional event parameters | GA4 key event? |
+| Event | Additional parameters | GA4 key event? |
 |---|---|---|
-| `generate_lead` | `lead_service` = service DLV, `lead_tier` = tier DLV, `page_path` = path DLV | Yes |
-| `phone_click` | `page_path` = path DLV | No |
-| `email_click` | `page_path` = path DLV | No |
-| `inquiry_error` | `error_category` = error DLV, `page_path` = path DLV | No |
+| `generate_lead` | `lead_service`, `lead_tier` | Yes |
+| `phone_click` | None | No |
+| `email_click` | None | No |
+| `inquiry_error` | `error_category` | No |
 
-Register event-scoped custom dimensions `lead_service` and `lead_tier` in GA4 if needed for reports. Do not use raw DOM/form values or Custom HTML/Custom JavaScript tags. Do not add automatic form triggers.
+All events include sanitized page location, referrer, title and path. Contact details and free-text form fields are never forwarded.
 
-Publish the container, then set Vercel Production variables:
+## Before publishing the website
 
-```
-SITE_URL=https://spontaneouscafe.com
-GTM_ID=<actual container ID>
-GA4_ID=<actual measurement ID>
-```
+1. In GA4's web stream, turn **Enhanced measurement off**. It was on at the last account inspection. This prevents automatic form/outbound/history events from bypassing the site's explicit event and URL controls.
+2. Mark `generate_lead` as a key event. Optional reporting dimensions: `lead_service` and `lead_tier`.
+3. Keep user-provided data collection, Google Signals and advertising personalization off; use two-month event retention initially.
+4. Deploy the updated site with `SITE_URL=https://spontaneouscafe.com`. The GA4 ID defaults to `G-VCT34ZQC92`; confirm an existing Vercel override does not blank or replace it.
+5. Once the custom domain serves this deployment, accept analytics and verify a page view in GA4 Realtime.
 
-Redeploy: these are build-time settings. Leave IDs unset on Preview. Setting only one ID does not activate analytics. The code also requires HTTPS and the exact configured hostname; local and Vercel alias visits never send measurement.
+The owner retains final Submit/Publish actions. This code change alone does not deploy the site or verify Google account settings. Leave the unused GTM container unpublished and do not add a second Google snippet.
 
 ## 3. Domain and indexing
 
@@ -87,12 +59,12 @@ The browser tests require Playwright and Chrome (or `BROWSER_CHANNEL` for anothe
 On the real production hostname, verify:
 
 - No Google requests before acceptance or after rejection, including subsequent page visits.
-- Acceptance loads one GTM container and sends one page view. No duplicate Google tag installation.
+- Acceptance loads one Google tag and sends one page view. No duplicate Google tag installation.
 - Cookie preferences remain available; withdrawal removes Analytics cookies, disables collection and reloads. Rejection in another tab stops collection here too. Reloading clears any unsent form entries; no inquiry data is stored just to restore the form.
 - `generate_lead` fires once only after Formspree success. Form validation/network failure produces no lead. Owner-notification failure cannot change an accepted inquiry into a failure.
-- Network payloads contain no name, email, phone, message, raw query strings or fragments. Confirm sanitized page location/referrer on automatic and custom hits in the actual published container.
-- Analytics continues to work under the deployed CSP. Google Ads and GTM preview overlay resources are intentionally not broadly allowed; add narrowly scoped resources only if a chosen feature needs them.
-- If using DebugView, enable a temporary GTM `debug_mode` setting for owner testing only, and remove it before publishing the final container. Verify reports after processing; do not promise a fixed propagation time.
+- Network payloads contain no name, email, phone, message, raw query strings or fragments. Confirm sanitized page location/referrer on automatic and custom hits in the live Google tag.
+- Analytics continues to work under the deployed CSP. Google Ads and Tag Assistant overlay resources are intentionally not broadly allowed; add narrowly scoped resources only if a chosen feature needs them.
+- If using DebugView, enable a temporary Google tag `debug_mode` setting for owner testing only, and remove it before deploying the final site. Verify reports after processing; do not promise a fixed propagation time.
 - Coordinate any real test inquiry with Matt and verify receipt in Formspree/the configured inbox. Account creation and a local test do not prove delivery or live GA4 collection.
 
 ## Reporting and optional advertising
@@ -109,4 +81,4 @@ Production now installs pinned Pillow and fails if it is missing, so responsive 
 
 Vercel runs the build in an isolated `uv` Python 3.12 environment with `requirements.txt`. The inherited `PYTHONPATH` is removed for this command because Vercel’s automatic dependency directory can contain native extensions built for a different Python version. Do not replace this with a system `pip install` or a bare `python3` build on Vercel.
 
-Still to verify with account/domain access: production-domain migration, Search Console ownership/indexing, published GA4/GTM settings, real lead delivery and production PageSpeed/Core Web Vitals. There is no field-performance score until it has been measured. The existing labeled sample testimonials remain unchanged and have no review schema.
+Still to verify with account/domain access: production-domain migration, Search Console ownership/indexing, GA4 settings, real lead delivery and production PageSpeed/Core Web Vitals. There is no field-performance score until it has been measured. The existing labeled sample testimonials remain unchanged and have no review schema.

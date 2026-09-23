@@ -19,14 +19,13 @@ const csp = config.headers.flatMap(rule => rule.headers).find(h => h.key === 'Co
         const url = new URL(route.request().url());
         if (url.hostname === 'www.googletagmanager.com') {
           googleRequests++;
-          return route.fulfill({ contentType: 'application/javascript', body: 'window.__gtmLoaded = true;' });
+          return route.fulfill({ contentType: 'application/javascript', body: 'window.__ga4Loaded = true;' });
         }
         if (url.hostname !== 'spontaneouscafe.com') return route.abort();
         const file = path.join(root, 'dist', url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname);
         if (!fs.existsSync(file)) return route.fulfill({ status: 404, body: '' });
         if (file.endsWith('.html')) {
-          const html = fs.readFileSync(file, 'utf8').replace('data-gtm-id=""', 'data-gtm-id="GTM-ABC1234"')
-            .replace('data-ga4-id=""', 'data-ga4-id="G-ABC1234567"');
+          const html = fs.readFileSync(file, 'utf8').replace(/data-ga4-id="[^"]*"/, 'data-ga4-id="G-ABC1234567"');
           return route.fulfill({ contentType: 'text/html', body: html, headers: { 'Content-Security-Policy': csp } });
         }
         return route.fulfill({ path: file });
@@ -42,7 +41,7 @@ const csp = config.headers.flatMap(rule => rule.headers).find(h => h.key === 'Co
       assert.equal(await page.locator('[data-cookie-notice]').isVisible(), false);
       await page.locator('[data-privacy-settings]').click();
       await page.locator('[data-consent="granted"]').click();
-      await page.waitForFunction(() => window.__gtmLoaded);
+      await page.waitForFunction(() => window.__ga4Loaded);
       assert.equal(googleRequests, 1);
       await page.locator('[data-privacy-settings]').click();
       await page.locator('[data-consent="denied"]').click();

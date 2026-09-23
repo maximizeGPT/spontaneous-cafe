@@ -34,18 +34,18 @@ class BuildTests(unittest.TestCase):
         self.assertIn('noindex', pages['404.html'])
 
     def test_preview_is_noindex_and_cannot_enable_tracking(self):
-        pages = self.render(VERCEL_ENV='preview', GTM_ID='GTM-ABC1234')
+        pages = self.render(VERCEL_ENV='preview', GA4_ID='G-ABC1234567')
         self.assertIn('noindex', pages['index.html'])
-        self.assertNotIn('data-gtm-id="GTM-', pages['index.html'])
+        self.assertNotIn('data-ga4-id="G-', pages['index.html'])
         self.assertNotIn('<loc>', pages['sitemap.xml'])
 
     def test_tracking_requires_valid_configuration(self):
-        with self.assertRaisesRegex(ValueError, 'GTM_ID'):
-            self.render(GTM_ID='bad-id')
+        with self.assertRaisesRegex(ValueError, 'GA4_ID'):
+            self.render(GA4_ID='bad-id')
 
     def test_valid_tracking_config_is_escaped_and_hashed(self):
-        home = self.render(VERCEL_ENV='production', GTM_ID='GTM-ABC1234')['index.html']
-        self.assertIn('data-gtm-id="GTM-ABC1234"', home)
+        home = self.render(VERCEL_ENV='production', GA4_ID='G-ABC1234567')['index.html']
+        self.assertIn('data-ga4-id="G-ABC1234567"', home)
         self.assertRegex(home, r'/assets/js/analytics\.[a-f0-9]{8}\.js')
         self.assertNotIn('googletagmanager.com/gtm.js', home)
 

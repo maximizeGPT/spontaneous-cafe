@@ -28,10 +28,7 @@ if (_origin.scheme != 'https' or not _origin.hostname or _origin.path or
         _origin.query or _origin.fragment or _origin.username or _origin.port):
     raise ValueError('SITE_URL must be an HTTPS origin without a path, port or credentials')
 PREVIEW = os.environ.get('VERCEL_ENV', 'production') != 'production' or os.environ.get('REVIEW') == '1'
-GTM_ID = os.environ.get('GTM_ID', '').strip()
-if GTM_ID and not re.fullmatch(r'GTM-[A-Z0-9]{5,}', GTM_ID):
-    raise ValueError('GTM_ID must be a real GTM container ID, or unset')
-GA4_ID = os.environ.get('GA4_ID', '').strip()
+GA4_ID = os.environ.get('GA4_ID', 'G-VCT34ZQC92').strip()
 if GA4_ID and not re.fullmatch(r'G-[A-Z0-9]+', GA4_ID):
     raise ValueError('GA4_ID must be a GA4 measurement ID, or unset')
 PHONE = '+1-707-972-6647'
@@ -248,8 +245,7 @@ def build():
 
     layout = read(os.path.join(SRC, 'layout.html'))
     layout = layout.replace('{{site_url}}', _html.escape(SITE, quote=True))
-    layout = layout.replace('{{gtm_id}}', GTM_ID if not PREVIEW else '')
-    layout = layout.replace('{{ga4_id}}', GA4_ID if not PREVIEW else '')
+    layout = layout.replace('{{ga4_id}}', GA4_ID if not PREVIEW and _origin.hostname == 'spontaneouscafe.com' else '')
     layout = layout.replace('{{analytics_host}}', _html.escape(_origin.hostname, quote=True))
     for old, new in assets.items():
         layout = layout.replace(old, new)

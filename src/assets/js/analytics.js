@@ -1,4 +1,4 @@
-/* Optional GA4 via GTM. No Google requests until analytics consent is granted. */
+/* Direct GA4. No Google requests until analytics consent is granted. */
 (function () {
   'use strict';
   var config = document.currentScript.dataset;
@@ -19,20 +19,20 @@
   // Only known static paths enter Analytics, including when the visitor reaches a 404.
   var paths = ['/', '/about/', '/foraging/', '/private-chef/', '/catering/', '/cooking-classes/', '/contact/', '/privacy/'];
   var page = paths.indexOf(win.location.pathname) >= 0 ? win.location.pathname : '/404/';
-  var enabled = /^GTM-[A-Z0-9]{5,}$/.test(config.gtmId || '') &&
-    /^G-[A-Z0-9]+$/.test(config.ga4Id || '') &&
+  var enabled = /^G-[A-Z0-9]+$/.test(config.ga4Id || '') &&
     win.location.hostname === config.analyticsHost && win.location.protocol === 'https:';
 
   win.cafeAnalytics = { track: function (event, details) {
     if (!enabled || !loaded || choice !== 'granted' || allowed.indexOf(event) < 0) return;
     details = details || {};
-    var data = { event: event, page_path: page };
+    var data = pageDetails();
+    data.send_to = config.ga4Id;
     if (event === 'generate_lead') {
       data.lead_service = services[details.service] || 'unspecified';
       data.lead_tier = tiers[details.tier] || 'unspecified';
     }
     if (event === 'inquiry_error') data.error_category = 'submission_failed';
-    win.dataLayer.push(data);
+    command('event', event, data);
   } };
   if (!enabled) return;
 
@@ -40,6 +40,12 @@
   var settings = doc.querySelector('[data-privacy-settings]');
 
   function command() { win.dataLayer.push(arguments); }
+  function pageDetails() {
+    var referrer = '';
+    try { referrer = new URL(doc.referrer).origin; } catch (e) { /* Direct visit. */ }
+    return { page_location: win.location.origin + page, page_referrer: referrer,
+      page_title: doc.title, page_path: page };
+  }
   function readChoice() {
     try {
       var saved = JSON.parse(win.localStorage.getItem(key));
@@ -60,17 +66,15 @@
     command('set', 'url_passthrough', false);
     command('consent', 'update', { analytics_storage: 'granted', ad_storage: 'denied',
       ad_user_data: 'denied', ad_personalization: 'denied' });
-    // GTM uses these fields instead of the raw URL, query, fragment or referrer.
-    var referrer = '';
-    try { referrer = new URL(doc.referrer).origin; } catch (e) { /* Direct visit. */ }
-    win.dataLayer.push({ event: 'analytics_ready',
-      analytics_page_location: win.location.origin + page,
-      analytics_page_referrer: referrer,
-      analytics_page_title: doc.title });
-    win.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    command('js', new Date());
+    var options = pageDetails();
+    options.allow_google_signals = false;
+    options.allow_ad_personalization_signals = false;
+    options.send_page_view = true;
+    command('config', config.ga4Id, options);
     var script = doc.createElement('script');
     script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + config.gtmId;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + config.ga4Id;
     doc.head.appendChild(script);
   }
 
@@ -97,7 +101,7 @@
     else {
       win['ga-disable-' + config.ga4Id] = true;
       clearAnalyticsCookies();
-      // Unload the container too, so it cannot continue processing automatic events.
+      // Unload the Google tag too, so it cannot continue processing automatic events.
       if (wasLoaded) win.location.reload();
     }
   }
