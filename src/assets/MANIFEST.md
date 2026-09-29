@@ -33,5 +33,19 @@ See MANIFEST-photos.md (written by the sourcing agent) for source URL, creator a
 | plate.jpg | 13_plated_seasonal_dish.jpg |
 | matt.jpg, matt-kitchen.jpg, matt-square.jpg | Matt Cooking.png supplied by Mohammed 2026-09-07 (real, not a stand-in) |
 
+## Logo raster files (rendered 2026-09-19)
+
+Rendered from this project's own SVGs in src/assets/logo, so there is no licence
+question on any of them. favicon.ico and apple-touch-icon.png are copied to the
+dist root by build.py; wordmark.png is the `logo` ImageObject in the JSON-LD,
+because Google's logo guidelines do not accept SVG.
+
+| File | Size | Rendered from | Used by |
+|---|---|---|---|
+| logo/favicon.ico | 32x32 | favicon.svg | `<link rel="icon" href="/favicon.ico">` |
+| logo/favicon-32.png | 32x32 | favicon.svg | intermediate for favicon.ico, not linked from a page |
+| logo/apple-touch-icon.png | 180x180 | favicon.svg | `<link rel="apple-touch-icon" href="/apple-touch-icon.png">` |
+| logo/wordmark.png | 1024x368 | wordmark.svg | LocalBusiness `logo` in the JSON-LD graph |
+
 ## Posters
 The five hero posters are frame 0 of loops generated from the stock photos, so each poster is the same image as a role file: home-poster = pan, foraging-poster = mushrooms-basket/svc-foraging, chef-poster = svc-chef, catering-poster = table-set/svc-catering, classes-poster = knife/svc-classes. Treat a poster and its role file as one photo when checking a page for repeats.

@@ -1,17 +1,25 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "env -u PYTHONPATH uv run --no-project --python 3.12 --with-requirements requirements.txt python build.py",
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
+    { "source": "/privacy-policy", "destination": "/privacy/", "permanent": true },
     { "source": "/privacy-policy/", "destination": "/privacy/", "permanent": true },
     { "source": "/:path*", "has": [{ "type": "host", "value": "www.spontaneouscafe.com" }], "destination": "https://spontaneouscafe.com/:path*", "permanent": true }
   ],
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/(css|js|fonts)/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/assets/(img|video)/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]
     },
     {
@@ -22,6 +30,7 @@
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
         { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Vary", "value": "Accept-Encoding" },
         { "key": "Content-Security-Policy", "value": "default-src 'self'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; media-src 'self'; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://formspree.io https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'" }
       ]
     },
