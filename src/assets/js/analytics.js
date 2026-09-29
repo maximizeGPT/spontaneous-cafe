@@ -17,7 +17,7 @@
   var tiers = { '3 hours': '3_hours', '6 hours': '6_hours', '12 hours': '12_hours', 'Larger event': 'larger_event' };
   var allowed = ['generate_lead', 'phone_click', 'email_click', 'inquiry_error'];
   // Only known static paths enter Analytics, including when the visitor reaches a 404.
-  var paths = ['/', '/about/', '/foraging/', '/private-chef/', '/catering/', '/cooking-classes/', '/contact/', '/privacy/'];
+  var paths = ['/', '/about/', '/foraging/', '/private-chef/', '/catering/', '/cooking-classes/', '/contact/', '/gallery/', '/privacy/'];
   var page = paths.indexOf(win.location.pathname) >= 0 ? win.location.pathname : '/404/';
   var enabled = /^G-[A-Z0-9]+$/.test(config.ga4Id || '') &&
     win.location.hostname === config.analyticsHost && win.location.protocol === 'https:';

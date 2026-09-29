@@ -437,6 +437,49 @@
     });
   });
 
+  /* ---------------------------------------------------------- gallery */
+  block(function () {
+    var photos = list('[data-gallery-photo]');
+    var viewer = doc.querySelector('.gallery-viewer');
+    if (!photos.length || !viewer || !viewer.showModal) return;
+    var index = 0;
+    var opener;
+    function show(next) {
+      index = (next + photos.length) % photos.length;
+      var original = photos[index].querySelector('img');
+      var image = viewer.querySelector('[data-gallery-image]');
+      image.src = photos[index].href;
+      image.alt = original.alt;
+      viewer.querySelector('[data-gallery-caption]').textContent = photos[index].parentNode.querySelector('figcaption').textContent;
+      viewer.querySelector('[data-gallery-count]').textContent = (index + 1) + ' / ' + photos.length;
+    }
+    photos.forEach(function (photo, i) {
+      photo.addEventListener('click', function (event) {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        opener = photo;
+        show(i);
+        viewer.showModal();
+        doc.documentElement.classList.add('gallery-open');
+        viewer.querySelector('[data-gallery-close]').focus();
+      });
+    });
+    viewer.querySelector('[data-gallery-close]').addEventListener('click', function () { viewer.close(); });
+    viewer.querySelector('[data-gallery-prev]').addEventListener('click', function () { show(index - 1); });
+    viewer.querySelector('[data-gallery-next]').addEventListener('click', function () { show(index + 1); });
+    viewer.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(index + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+    });
+    viewer.addEventListener('click', function (event) { if (event.target === viewer) viewer.close(); });
+    viewer.addEventListener('close', function () {
+      doc.documentElement.classList.remove('gallery-open');
+      if (opener) opener.focus();
+    });
+  });
+
   /* -------------------------------------------------------------- year */
   block(function () {
     var y = doc.querySelector('[data-year]');
