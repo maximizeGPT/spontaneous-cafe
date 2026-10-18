@@ -17,7 +17,7 @@ const path = require('node:path');
       await page.locator('.gallery-preview').click();
       await page.waitForURL('**/gallery/');
       const photos = page.locator('[data-gallery-photo]');
-      assert.equal(await photos.count(), 9);
+      assert.equal(await photos.count(), 3);
       await photos.first().click();
       const viewer = page.getByRole('dialog');
       assert.equal(await viewer.isVisible(), true);

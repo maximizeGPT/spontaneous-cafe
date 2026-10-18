@@ -35,13 +35,6 @@ PHONE = '+1-707-972-6647'
 EMAIL = 'chefmattsamuelson@gmail.com'
 DEFAULT_OG_ALT = 'The Spontaneous Cafe, Mendocino'
 
-# The three hour tiers. Any service, any page. See CONTEXT.md.
-TIERS = [
-    ('Three hours', '300'),
-    ('Six hours', '500'),
-    ('Twelve hours', '1000'),
-]
-
 CONFIRM_RE = re.compile(r'<!--\s*CONFIRM\b.*?-->', re.S)
 TAG_CONFIRM_RE = re.compile(r'<span class="tag-confirm">.*?</span>', re.S)
 CLASS_ATTR_RE = re.compile(r'class="([^"]*)"')
@@ -65,16 +58,6 @@ def read(p):
         return f.read()
 
 
-def offers():
-    return [{
-        "@type": "Offer",
-        "name": name,
-        "price": price,
-        "priceCurrency": "USD",
-        "itemOffered": {"@type": "Service", "name": "Culinary experience with Chef Matt"},
-    } for name, price in TIERS]
-
-
 def jsonld(meta, slug):
     if meta.get('service'):
         base = {
@@ -93,7 +76,6 @@ def jsonld(meta, slug):
             "areaServed": "Mendocino County, California",
             "url": f"{SITE}/{slug}/",
             "description": meta['description'],
-            "offers": offers(),
         }
     else:
         base = {
@@ -103,15 +85,13 @@ def jsonld(meta, slug):
             "name": "The Spontaneous Cafe",
             "alternateName": "Chef Matt Samuelson",
             "url": SITE + "/",
-            "image": SITE + "/assets/img/home-poster.jpg",
+            "image": SITE + "/assets/img/original-3.jpg",
             "telephone": PHONE,
             "email": EMAIL,
             "founder": {"@type": "Person", "@id": SITE + '/about/#matt', "name": "Matthew Samuelson", "url": SITE + '/about/'},
             "foundingDate": "2009",
             "areaServed": {"@type": "Place", "name": "Mendocino County, California"},
             "address": {"@type": "PostalAddress", "addressLocality": "Mendocino", "addressRegion": "CA", "addressCountry": "US"},
-            "priceRange": "$$$",
-            "makesOffer": offers(),
             "sameAs": ["https://www.google.com/maps?cid=7343978535458024901"],
             "hasMap": "https://www.google.com/maps?cid=7343978535458024901",
         }
@@ -239,8 +219,25 @@ def build():
     if os.path.isdir(DIST):
         shutil.rmtree(DIST)
     os.makedirs(DIST)
+    # Publish only images referenced by current pages, plus their responsive variants.
+    page_source = '\n'.join(read(os.path.join(SRC, 'pages', fn))
+                            for fn in os.listdir(os.path.join(SRC, 'pages')) if fn.endswith('.html'))
+    used_images = set(re.findall(r'/assets/img/([\w-]+)\.jpg', page_source))
+    used_images.update(re.findall(r'"og_image"\s*:\s*"([\w-]+)\.jpg"', page_source))
+    used_images.add('original-3')  # Business schema and fallback share image.
+
+    def unused_assets(directory, names):
+        if os.path.basename(directory) == 'assets':
+            return [n for n in names if n == 'video' or n.startswith('MANIFEST')]
+        if os.path.basename(directory) == 'img':
+            return [n for n in names if not any(
+                n in (stem + '.jpg', stem + '.webp') or
+                re.fullmatch(re.escape(stem) + r'-(480|800|1200)\.(jpg|webp)', n)
+                for stem in used_images)]
+        return []
+
     shutil.copytree(os.path.join(SRC, 'assets'), os.path.join(DIST, 'assets'),
-                    ignore=shutil.ignore_patterns('MANIFEST*.md'))
+                    ignore=unused_assets)
     assets = hash_assets()
 
     layout = read(os.path.join(SRC, 'layout.html'))
@@ -262,7 +259,7 @@ def build():
             sys.exit(f'{fn}: missing meta block')
         meta = json.loads(m.group(1))
         body = CONFIRM_RE.sub('', raw[m.end():])
-        og_image = meta.get('og_image', 'home-poster.jpg')
+        og_image = meta.get('og_image', 'original-3.jpg')
         canonical = '' if slug in ('index', '404') else slug + '/'
         title = _html.escape(meta['title'], quote=True)
         description = _html.escape(meta['description'], quote=True)

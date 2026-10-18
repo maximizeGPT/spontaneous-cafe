@@ -67,9 +67,9 @@ export default async function handler(req, res) {
   if (!b || typeof b !== 'object' || Array.isArray(b)) return res.status(400).json({ ok: false });
   if (b._gotcha) return res.status(200).json({ ok: true }); // honeypot: pretend success
 
-  const name = clean(b.name, 80), email = clean(b.email, 120), phone = clean(b.phone, 40), service = clean(b.service, 60);
+  const name = clean(b.name, 80), email = clean(b.email, 120), phone = clean(b.phone, 40), service = clean(b.service, 60) || 'General question';
   const date = clean(b.date, 20), guests = clean(b.guests, 6), message = clean(b.message, 400);
-  if (!name || !email || !service) return res.status(400).json({ ok: false, error: 'name, email and service are required' });
+  if (!name || !email) return res.status(400).json({ ok: false, error: 'name and email are required' });
 
   // Over the limit: look identical to success so a bot learns nothing, and send nothing.
   if (throttled(req)) return res.status(200).json({ ok: true });

@@ -2,6 +2,10 @@
 
 Engagement: MOSI Consulting Inc for Chef Matt Samuelson, Mendocino, CA. Proposal doc Phase 1 item 1 only (website refresh). Decisions below were settled in a grill session on 2026-09-06.
 
+## Current direction, October 18, 2026
+
+The client approved retaining the original Cottage Kitchen styling and most of the existing content after rejecting the plain field journal version. Preserve the linen, green and rust palette, typography, organized sections, service cards, examples, seasonal menus, FAQs, testimonials and written career timeline. Preserve every page URL. Remove dedicated booking and pricing sections and price metadata. Use only original client photographs, with ordinary crop/resize/encoding; exclude generated video, AI-edited images and third-party stock imagery. The career timeline retains its text without the stock illustrations. Keep the contact page as a way to send a message, without booking fields. This supersedes both the initial simplification and earlier media/pricing presentation decisions. See docs/ORIGINAL-PHOTOS.md.
+
 ## Client facts
 - Business: The Spontaneous Cafe, since 2009. Personal chef, catering, foraging excursions, cooking classes, forest bathing, farm and ranch tours, interactive dinner parties.
 - Service priority: 1 Foraging, 2 Private chef, 3 Catering and events, 4 Cooking classes.

@@ -215,7 +215,7 @@ button { font: inherit; }
   .nav .btn { margin-top: var(--space-4); min-height: 48px; justify-content: center; border-bottom: 1px solid var(--red); }
 }
 
-/* Hero with video */
+/* Hero with original client photography */
 .hero {
   position: relative; isolation: isolate; color: var(--linen);
   min-height: min(78vh, 720px); display: flex; align-items: flex-end;
@@ -559,10 +559,7 @@ button { font: inherit; }
 
 /* Reveal on scroll. Visible at rest; JS only adds motion when allowed. */
 .reveal { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
-  .js .reveal.is-in { opacity: 1; transform: none; }
-}
+
 @media (prefers-reduced-motion: reduce) {
   .hero__toggle { display: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
@@ -644,3 +641,34 @@ picture.ph { display: block; position: relative; }
 html.gallery-open { overflow: hidden; }
 @media (max-width: 900px) { .photo-journal { columns: 2; } }
 @media (max-width: 600px) { .photo-journal { columns: 1; } .gallery-viewer { padding: .75rem; } }
+
+/* Career entries retain the original timeline; stock illustrations are omitted. */
+.timeline__item { grid-template-columns: minmax(0, 1fr); padding-left: calc(var(--tl-rail) + var(--space-5)); }
+.timeline__item::before { left: calc(var(--tl-rail) - var(--tl-dot) / 2); }
+.timeline__item::after { left: calc(var(--tl-rail) - 1px); }
+.timeline__copy, .timeline__item:nth-child(even) .timeline__copy { grid-column: 1; text-align: left; }
+.timeline__detail { max-width: 65ch; }
+
+/* Keep navigation available when JavaScript is disabled. */
+@media (max-width: 900px) {
+  html:not(.js) .site-header .wrap { flex-wrap: wrap; }
+  html:not(.js) .nav-toggle { display: none; }
+  html:not(.js) .nav { position: static; width: 100%; visibility: visible; opacity: 1; transform: none; pointer-events: auto; box-shadow: none; }
+}
+
+/* Three distinct photographs lead to the full gallery. */
+.harvest-gallery--preview { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto; }
+.harvest-gallery--preview figure { grid-column: auto; grid-row: auto; aspect-ratio: 3 / 4; }
+@media (max-width: 600px) {
+  .harvest-gallery--preview { grid-template-columns: 1fr; }
+  .harvest-gallery--preview figure, .harvest-gallery--preview figure:last-child { grid-column: auto; aspect-ratio: 4 / 3; }
+}
+.figure--harvest img[src*="matt-portrait"] { object-position: center top; }
+
+/* Keep text sections balanced when their shared photographs are removed. */
+.prose-section { max-width: 860px; }
+.prose-section .measure { max-width: none; }
+.figure--catering img { aspect-ratio: 3 / 4; object-fit: cover; }
+.figure--harvest > a { display: block; }
+.hero--about .hero__portrait img[src*="matt-portrait"] { aspect-ratio: 3 / 4; object-position: center; }
+.figure--class img { aspect-ratio: 3 / 4; object-fit: cover; object-position: center top; }

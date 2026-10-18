@@ -34,9 +34,7 @@ const root = path.resolve(__dirname, '..');
       }, outcome === 'blocked-analytics');
       await page.locator('[name="name"]').fill('Test Visitor');
       await page.locator('[name="email"]').fill('test@example.org');
-      await page.locator('[name="date"]').fill('October');
       await page.locator('[name="service"]').selectOption('Private chef');
-      await page.locator('[name="tier"]').selectOption('3 hours');
       await page.locator('[name="message"]').fill('Mocked request; never transmitted.');
       await page.evaluate(() => {
         const form = document.querySelector('[data-contact]');
@@ -52,7 +50,7 @@ const root = path.resolve(__dirname, '..');
         assert.equal(events.filter(e => e[0] === 'inquiry_error').length, 1);
       } else {
         assert.ok(status.includes('Thank you'), 'analytics/notification failure cannot change form success');
-        if (outcome === 'success') assert.deepEqual(events, [['generate_lead', { service: 'Private chef', tier: '3 hours' }]]);
+        if (outcome === 'success') assert.deepEqual(events, [['generate_lead', { service: 'Private chef' }]]);
       }
       await page.close();
       console.log('PASS form:', outcome);

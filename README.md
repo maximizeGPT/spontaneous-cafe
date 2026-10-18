@@ -35,9 +35,9 @@ The build prints which mode it ran in (`review` or `production`).
   (Lora upright and italic, Source Sans 3 upright and italic, all variable woff2 pulled from the
   Google Fonts API). The site makes no request to fonts.googleapis.com or fonts.gstatic.com.
 - `src/assets/css/site.css`: design tokens and every component.
-- `src/assets/js/site.js`: mobile nav, hero video (pauses off screen, off under reduced motion), reveal on scroll, seasonal menu tabs, contact form fallback.
+- `src/assets/js/site.js`: mobile navigation, contact form with a plain POST fallback, accessible photo viewer, and seasonal menu tabs.
 - `src/assets/logo/`: the wordmark traced from the original JPG into SVG (potrace), plus light variant, tagline, credit and favicon.
-- `src/assets/img/`, `src/assets/video/`: placeholders until Matt's own photos and the AI-generated loops land. See `docs/SWAP-LIST.md`.
+- `src/assets/img/original-*`: client photographs, cropped and resized without generative edits. See `docs/ORIGINAL-PHOTOS.md`. The build excludes unused images and all videos.
 - `docs/directions-board.html`: the six visual directions shown to Mohammed. Direction C won.
 - `CONTEXT.md`: every decision and every client fact. Read it before changing anything.
 
@@ -76,16 +76,9 @@ Then point `spontaneouscafe.com` at Vercel from GoDaddy DNS (A record to Vercel,
 
 The form posts to Formspree (form `maeypdpl`) by AJAX with a plain POST as the no-JS fallback. Submissions arrive by email.
 
-## Hero video loops
+## Photography and presentation
 
-The five loops are AI-generated from the placeholder photos with fal.ai (MiniMax Hailuo 02, image-to-video, 768p, 6 s, about $0.27 a clip). Ambience only: motion added to an existing photo, never a dish invented. When Matt's own photos land, regenerate from those.
-
-```bash
-set -a; . ./.env; set +a; python3 tools/gen-video.py        # all five, or name shots
-./tools/place-video.sh                                       # ping-pong loop, 1280 wide, posters cut from frame 0
-```
-
-Keys live in `.env` (gitignored): `FAL_KEY`, `MINIMAX_API_KEY`, `VERCEL_TOKEN`.
+The October 2026 revision preserves the original Cottage Kitchen styling and content, with original client photographs only. Generated loops and edited/stock photographs remain in source history but are excluded from the published build. No booking sections, pricing tables, or price offers are published. All existing page URLs are retained.
 
 ## Deploy
 
