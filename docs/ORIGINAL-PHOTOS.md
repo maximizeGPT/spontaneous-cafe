@@ -23,7 +23,7 @@ The build includes only referenced photographs and their responsive variants. Le
 Each photograph belongs to one page. The homepage may reuse a photograph only inside a link to that page.
 
 - Home only: original-2.
-- Foraging: original-3.
+- Foraging: original-3 and foraging-berries.
 - Private chef: original-1.
 - Catering: original-10 and catering-kitchen.
 - Cooking classes: original-11 and original-9.
@@ -33,3 +33,5 @@ Each photograph belongs to one page. The homepage may reuse a photograph only in
 `catering-kitchen` comes from the client-supplied Drive photo IMG_8363.heic, file ID `1wbnNjSGsG8l6HfMRuf4q1PLdzPXaJAXJ`. Converted from HEIC, orientation preserved, resized to 1200 × 1600 with responsive JPEG/WebP variants. No generated content or retouching.
 
 `matt-portrait` uses client-selected IMG_1045.png, Drive file ID `1M3aVlyliI2xbAIR0BA8mX0Eej09Of7rG`. Cropped from the 828 × 1792 screenshot at (100,445) to (820,1405), removing phone UI and excess background. Brightness adjusted by 1.03 and color saturation by 0.96. No generative edits. Used on About and its linked homepage preview; the previous original-9 photograph now belongs to Cooking Classes.
+
+`foraging-berries` is the client attachment supplied on October 18, 2026, showing bowls of gathered berries outdoors with Matt. Full 765 × 1020 composition preserved; JPEG/WebP encoding and a 480px responsive variant only. No cropping or retouching. Appears beside “What a foraging day includes.”
