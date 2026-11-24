@@ -20,7 +20,7 @@ The build includes only referenced photographs and their responsive variants. Le
 
 ## Exclusive page placement
 
-Each photograph belongs to one page. The homepage may reuse a photograph only inside a link to that page.
+Each photograph has a primary page. The homepage may also reuse a photograph inside a link to that page. The Gallery includes all nine originals from the earlier gallery, including photographs used on other pages.
 
 - Home only: original-2.
 - Foraging: original-3 and foraging-berries.
@@ -28,7 +28,7 @@ Each photograph belongs to one page. The homepage may reuse a photograph only in
 - Catering: original-10 and catering-kitchen.
 - Cooking classes: original-11 and original-9.
 - About: matt-portrait.
-- Gallery: original-4, original-6, original-8.
+- Gallery collection: original-11, original-6, original-4, original-1, original-8, original-2, original-10, original-3, original-9.
 
 `catering-kitchen` comes from the client-supplied Drive photo IMG_8363.heic, file ID `1wbnNjSGsG8l6HfMRuf4q1PLdzPXaJAXJ`. Converted from HEIC, orientation preserved, resized to 1200 × 1600 with responsive JPEG/WebP variants. No generated content or retouching.
 

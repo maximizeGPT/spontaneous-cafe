@@ -30,16 +30,21 @@ class SimpleSiteTests(unittest.TestCase):
   for p in (ROOT/'src/pages').glob('*.html'):
    photos=re.findall(r'<img[^>]*src="([^"]+)"',p.read_text())
    self.assertEqual(len(photos),len(set(photos)),p.name+' repeats a photo')
- def test_photos_are_exclusive_except_linked_home_previews(self):
+ def test_photos_have_one_primary_page_and_home_previews_link_to_it(self):
   owners={}
   for p in (ROOT/'src/pages').glob('*.html'):
-   if p.stem=='index': continue
+   if p.stem in {'index','gallery'}: continue
    parser=PhotoParser(); parser.feed(p.read_text())
    for photo,_ in parser.photos:
     self.assertNotIn(photo,owners,photo+' is repeated across pages')
     owners[photo]='/'+p.stem+'/'
+  gallery=PhotoParser(); gallery.feed((ROOT/'src/pages/gallery.html').read_text())
+  gallery_photos={photo for photo,_ in gallery.photos}
   parser=PhotoParser(); parser.feed((ROOT/'src/pages/index.html').read_text())
   for photo,link in parser.photos:
+   if link=='/gallery/':
+    self.assertIn(photo,gallery_photos,photo+' needs to appear in the gallery')
+    continue
    if photo in owners: self.assertEqual(link,owners[photo],photo+' needs a link to its dedicated page')
  def test_home_has_no_sample_menu_section(self):
   self.assertNotIn('Six courses, by season',(ROOT/'src/pages/index.html').read_text())

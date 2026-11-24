@@ -5,7 +5,7 @@ const path = require('node:path');
 (async () => {
   const browser = await chromium.launch({ headless: true, channel: 'chrome' });
   try {
-    for (const width of [390, 1440]) {
+    for (const width of [390, 901, 1440]) {
       const page = await browser.newPage({ viewport: { width, height: 900 } });
       await page.route('**/*', route => {
         const url = new URL(route.request().url());
@@ -16,8 +16,15 @@ const path = require('node:path');
       await page.goto('https://spontaneouscafe.com/');
       await page.locator('.gallery-preview').click();
       await page.waitForURL('**/gallery/');
+      await page.locator('[data-consent="denied"]').click();
+      await page.goto('https://spontaneouscafe.com/');
+      if (width <= 900) await page.getByRole('button', { name: 'Menu' }).click();
+      const galleryNav = page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Gallery', exact: true });
+      await galleryNav.click();
+      await page.waitForURL('**/gallery/');
+      assert.equal(await page.locator('#nav a[href="/gallery/"]').getAttribute('aria-current'), 'page');
       const photos = page.locator('[data-gallery-photo]');
-      assert.equal(await photos.count(), 3);
+      assert.equal(await photos.count(), 9);
       await photos.first().click();
       const viewer = page.getByRole('dialog');
       assert.equal(await viewer.isVisible(), true);
@@ -30,7 +37,6 @@ const path = require('node:path');
       assert.equal(await viewer.isVisible(), false);
       assert.equal(await photos.first().evaluate(el => el === document.activeElement), true);
       assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
-      await page.locator('[data-consent="denied"]').click();
       for (const photo of await photos.all()) {
         await photo.scrollIntoViewIfNeeded();
         await photo.locator('img').evaluate(img => img.decode());
