@@ -7,21 +7,32 @@ const root = path.resolve(__dirname, '..');
 (async () => {
   const browser = await chromium.launch({ headless: true, channel: process.env.BROWSER_CHANNEL || 'chrome' });
   try {
-    for (const outcome of ['success', 'failure', 'blocked-analytics']) {
+    for (const outcome of ['success', 'failure', 'activation-required', 'blocked-analytics']) {
       const page = await browser.newPage();
       let submissions = 0;
       await page.route('**/*', async route => {
         const url = new URL(route.request().url());
-        if (url.hostname === 'formspree.io') {
+        if (url.hostname === 'formsubmit.co') {
+          assert.equal(url.pathname, '/ajax/chefmattsamuelson@gmail.com');
+          assert.equal(route.request().method(), 'POST');
+          assert.equal(route.request().postDataJSON().service, 'Private chef');
           submissions++;
           await new Promise(resolve => setTimeout(resolve, 100));
           return route.fulfill({ status: outcome === 'failure' ? 422 : 200,
-            contentType: 'application/json', body: outcome === 'failure' ? '{"errors":[]}' : '{"ok":true}' });
+            contentType: 'application/json', body: JSON.stringify({
+              success: outcome === 'failure' || outcome === 'activation-required' ? 'false' : 'true'
+            }) });
         }
         if (url.pathname === '/api/notify/') return route.abort();
         if (url.hostname !== 'spontaneouscafe.com') return route.abort();
         const rel = url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname;
         const file = path.join(root, 'dist', rel);
+        if (rel === '/contact/index.html') {
+          const html = fs.readFileSync(file, 'utf8');
+          // Exercise the saved form before it is enabled again.
+          const body = html.replace(/<template id="paused-inquiry-form">([\s\S]*?)<\/template>/, '$1');
+          return route.fulfill({ contentType: 'text/html; charset=utf-8', body });
+        }
         return fs.existsSync(file) ? route.fulfill({ path: file }) : route.fulfill({ status: 404, body: '' });
       });
       await page.goto('https://spontaneouscafe.com/contact/');
@@ -44,7 +55,7 @@ const root = path.resolve(__dirname, '..');
       const status = await page.locator('.form__status').textContent();
       const events = await page.evaluate(() => window.recorded);
       assert.equal(submissions, 1, 'duplicate submits must be suppressed');
-      if (outcome === 'failure') {
+      if (outcome === 'failure' || outcome === 'activation-required') {
         assert.ok(status.includes('did not send'));
         assert.equal(events.filter(e => e[0] === 'generate_lead').length, 0);
         assert.equal(events.filter(e => e[0] === 'inquiry_error').length, 1);

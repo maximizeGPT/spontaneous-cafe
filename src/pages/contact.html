@@ -1,12 +1,12 @@
 <!--meta
-{"title": "Contact | The Spontaneous Cafe, Mendocino", "description": "Book Chef Matt Samuelson for a foraging day, a private dinner, catering or a cooking class anywhere in the greater Mendocino area. Call or send an inquiry.", "og_image": "original-10.jpg"}
+{"title": "Contact | The Spontaneous Cafe, Mendocino", "description": "Book Chef Matt Samuelson for a foraging day, a private dinner, catering or a cooking class anywhere in the greater Mendocino area. Call, text or email Matt.", "og_image": "original-10.jpg"}
 -->
 <section class="hero hero--plain">
   <div class="wrap">
     <div class="hero__inner">
       <p class="eyebrow">Contact</p>
       <h1>Send Matt the <span class="hand">details</span>.</h1>
-      <p class="lede">Tell Matt what you have in mind. He’ll reply to discuss what you have in mind.</p>
+      <p class="lede">Call, text or email Matt to talk through what you have in mind.</p>
     </div>
   </div>
 </section>
@@ -34,49 +34,51 @@
         <p class="small">Have a question before you make plans? Call or email Matt directly.</p>
       </div>
 
-      <form class="form reveal" data-contact method="POST" action="https://formspree.io/f/maeypdpl">
-        <input type="hidden" name="_subject" value="Spontaneous Cafe inquiry">
-        <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <p class="field--full small">Fields marked * are required.</p>
-        <div class="field">
-          <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
-          <input type="text" id="name" name="name" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
-          <input type="email" id="email" name="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-help">
-          <span class="help" id="phone-help">Only if you would rather be called than emailed</span>
-        </div>
-        <div class="field">
-          <label for="service">What you’re after <span class="req" aria-hidden="true">*</span></label>
-          <select id="service" name="service" required>
-            <option value="" disabled selected>Choose one</option>
-            <option value="Foraging excursion">Foraging excursion</option>
-            <option value="Private chef">Private chef</option>
-            <option value="Catering and events">Catering and events</option>
-            <option value="Cooking class">Cooking class</option>
-            <option value="Forest bathing or farm tour">Forest bathing or farm tour</option>
-            <option value="Interactive dinner party">Interactive dinner party</option>
-            <option value="Something else">Something else</option>
-          </select>
-        </div>
+      <template id="paused-inquiry-form">
+        <form class="form reveal" data-contact method="POST" action="https://formsubmit.co/chefmattsamuelson@gmail.com">
+          <input type="hidden" name="_subject" value="Spontaneous Cafe inquiry">
+          <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="field--full small">Fields marked * are required.</p>
+          <div class="field">
+            <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" aria-describedby="phone-help">
+            <span class="help" id="phone-help">Only if you would rather be called than emailed</span>
+          </div>
+          <div class="field">
+            <label for="service">What you’re after <span class="req" aria-hidden="true">*</span></label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="Foraging excursion">Foraging excursion</option>
+              <option value="Private chef">Private chef</option>
+              <option value="Catering and events">Catering and events</option>
+              <option value="Cooking class">Cooking class</option>
+              <option value="Forest bathing or farm tour">Forest bathing or farm tour</option>
+              <option value="Interactive dinner party">Interactive dinner party</option>
+              <option value="Something else">Something else</option>
+            </select>
+          </div>
 
 
 
-        <div class="field field--full">
-          <label for="message">Location and plans</label>
-          <textarea id="message" name="message" aria-describedby="message-help"></textarea>
-          <span class="help" id="message-help">Your venue or rental, dietary needs, accessibility requirements and anything you’d like Matt to know</span>
-        </div>
-        <div class="form__actions">
-          <button class="btn" type="submit">Send inquiry</button>
-          <p class="form__status" aria-live="polite"></p>
-        </div>
-      </form>
+          <div class="field field--full">
+            <label for="message">Location and plans</label>
+            <textarea id="message" name="message" aria-describedby="message-help"></textarea>
+            <span class="help" id="message-help">Your venue or rental, dietary needs, accessibility requirements and anything you’d like Matt to know</span>
+          </div>
+          <div class="form__actions">
+            <button class="btn" type="submit">Send inquiry</button>
+            <p class="form__status" aria-live="polite"></p>
+          </div>
+        </form>
+      </template>
 
       <div class="contact-faq reveal">
         <div class="section-head">
@@ -86,7 +88,7 @@
         <div class="faq">
 
           <details>
-            <summary>What happens after I send this?</summary>
+            <summary>What happens after I get in touch?</summary>
             <p>I’ll reply to discuss your date, location, interests and dietary needs. You can ask questions and talk through what you have in mind.</p>
           </details>
 

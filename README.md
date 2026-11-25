@@ -51,8 +51,7 @@ The woff2 files are not hashed, they never change.
 ## Security headers
 
 Set in `vercel.json` for every path: HSTS, `X-Content-Type-Options`, `Referrer-Policy`,
-`Permissions-Policy`, `X-Frame-Options` and a Content-Security-Policy. The only cross-origin
-destination the policy allows is `https://formspree.io`, for the contact form.
+`Permissions-Policy`, `X-Frame-Options` and a Content-Security-Policy. The policy permits requests to `https://formsubmit.co` for the contact form.
 
 The CSP carries `style-src 'self' 'unsafe-inline'` only because a handful of pages still have inline
 `style` attributes. Once those are gone from `src/pages/`, drop `'unsafe-inline'` from the
@@ -74,7 +73,7 @@ Then point `spontaneouscafe.com` at Vercel from GoDaddy DNS (A record to Vercel,
 
 ## Contact form
 
-The form posts to Formspree (form `maeypdpl`) by AJAX with a plain POST as the no-JS fallback. Submissions arrive by email.
+The form posts to FormSubmit by AJAX with a plain POST as the fallback. The recipient is `chefmattsamuelson@gmail.com`. Activate the form with the link FormSubmit sends to that inbox after the first submission, then verify delivery with a test inquiry.
 
 ## Photography and presentation
 
@@ -90,7 +89,7 @@ Production: https://spontaneous-cafe.vercel.app (project `spontaneous-cafe`, tea
 
 ## Instant text on each inquiry
 
-`api/notify.js` is a Vercel function the contact form calls after a successful Formspree post. It texts Matt through Twilio and, or instead, pushes to Telegram. Configure in Vercel > Settings > Environment Variables:
+`api/notify.js` is a Vercel function the contact form calls after a successful FormSubmit post. It texts Matt through Twilio and, or instead, pushes to Telegram. Configure in Vercel > Settings > Environment Variables:
 
 | Variable | Purpose |
 |---|---|
@@ -99,7 +98,7 @@ Production: https://spontaneous-cafe.vercel.app (project `spontaneous-cafe`, tea
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | Free alternative: create a bot with @BotFather, message it once, read the chat id. |
 | `CONFIRM_INQUIRER=1` | Also text the inquirer a confirmation when they leave a phone number. |
 
-With no variables set the function returns "skipped" and the form still works through Formspree.
+With no variables set the function returns "skipped" and the form still works through FormSubmit.
 
 ## Responsive images
 

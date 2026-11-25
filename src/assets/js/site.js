@@ -138,7 +138,7 @@
   });
 
   /* ------------------------------------------------------ contact form */
-  // AJAX to Formspree, with the plain POST as the no-JS fallback.
+  // AJAX to FormSubmit, with the plain POST as the no-JS fallback.
   block(function () {
     var form = doc.querySelector('form[data-contact]');
     if (!form) return;
@@ -187,23 +187,30 @@
       setStatus('Sending…', false);
       if (button) button.disabled = true;
 
-      fetch(form.action, {
+      var inquiry = Object.fromEntries(submitted);
+      var endpoint = new URL(form.action);
+      endpoint.pathname = '/ajax' + endpoint.pathname;
+      var request = inquiry._honey ? Promise.resolve({ success: true }) : fetch(endpoint.href, {
         method: 'POST',
-        body: submitted,
-        headers: { 'Accept': 'application/json' }
-      })
-        .then(function (r) { return r.ok ? r.json() : r.json().then(function (j) { throw j; }); })
-        .then(function () {
-          trackInquiry('generate_lead', lead);
-          // Instant notification to Matt, fire and forget. Formspree already has the record.
-          var payload = {};
-          submitted.forEach(function (v, k) { payload[k] = v; });
-          fetch('/api/notify/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-            keepalive: true
-          }).catch(noop);
+        body: JSON.stringify(inquiry),
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (!response.ok) throw new Error('FormSubmit request failed');
+        return response.json();
+      });
+
+      request.then(function (result) {
+          if (String(result.success) !== 'true') throw new Error('FormSubmit did not accept the inquiry');
+          if (!inquiry._honey) {
+            trackInquiry('generate_lead', lead);
+            // Instant notification to Matt after FormSubmit accepts the inquiry.
+            fetch('/api/notify/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(inquiry),
+              keepalive: true
+            }).catch(noop);
+          }
           form.reset();
           setStatus('Sent. Thank you for your inquiry. Matt will get back to you to discuss the details.', false);
         })

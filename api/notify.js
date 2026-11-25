@@ -3,7 +3,7 @@
 //   TWILIO_SID, TWILIO_TOKEN, TWILIO_FROM (E.164, e.g. +17075550100), OWNER_PHONE (E.164)   -> SMS via Twilio
 //   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID                                                   -> Telegram push (free)
 //   CONFIRM_INQUIRER=1                                                                     -> also text the inquirer if they left a phone
-// The form still posts to Formspree for email and storage. This is the instant channel on top.
+// The form still posts to FormSubmit for email and storage. This is the instant channel on top.
 //
 // Hardening: POST with a JSON body only, same-site Origin or Referer only, five
 // requests per IP per ten minutes. The only number this function will ever text
@@ -65,7 +65,7 @@ export default async function handler(req, res) {
   let b = req.body;
   if (typeof b === 'string') { try { b = JSON.parse(b); } catch { return res.status(400).json({ ok: false }); } }
   if (!b || typeof b !== 'object' || Array.isArray(b)) return res.status(400).json({ ok: false });
-  if (b._gotcha) return res.status(200).json({ ok: true }); // honeypot: pretend success
+  if (b._honey || b._gotcha) return res.status(200).json({ ok: true }); // honeypot: pretend success
 
   const name = clean(b.name, 80), email = clean(b.email, 120), phone = clean(b.phone, 40), service = clean(b.service, 60) || 'General question';
   const date = clean(b.date, 20), guests = clean(b.guests, 6), message = clean(b.message, 400);
